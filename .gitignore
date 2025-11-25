@@ -1,0 +1,14 @@
+# dist
+/dist/
+
+# node_modules
+/node_modules/
+
+# tsconfig.json
+/tsconfig.json
+
+# Other specific files or directories
+*.log
+*.tmp
+*.env# dist
+/dist/
