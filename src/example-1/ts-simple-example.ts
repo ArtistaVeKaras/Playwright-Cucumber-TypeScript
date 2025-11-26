@@ -3,7 +3,7 @@ let age : number = 30;
 
 console.log(`Hello, my name is ${firstName} and I am ${age} years old.`);
 
-// //Enunm
+// Enunm
 // enum Color {
 //     Red,
 //     Green,
