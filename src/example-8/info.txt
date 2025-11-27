@@ -1,0 +1,11 @@
+1. An asynchronous operation is a task that runs independently of the main program flow, 
+allowing the program to continue executing other tasks while waiting for the asynchronous operation to complete.
+
+2. In summary: 
+synchronous operations wait for each task to finish before moving on to the next. 
+asynchronous operations allow tasks to run independently, making the program more efficient.
+
+3. Common keywords:
+async 
+await
+
