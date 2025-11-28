@@ -11,7 +11,8 @@
   "api": "npx playwright test -grep @Api --project=chromium",
   "regression": "npx playwright test -grep @Regression --project=chromium",
   "test": "npx playwright test --project=chromium",
-  "ci": "npx playwright test --project=chromium --workers=1"
+  "ci": "npx playwright test --project=chromium --workers=1",
+  "CucumberWithTS": "npx cucumber-js src/features/*.feature --require-module ts-node/register --require src/step-definitions/**/**/*.ts"
   },
   "author": "",
   "license": "ISC",
