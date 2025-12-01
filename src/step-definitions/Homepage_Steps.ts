@@ -1,4 +1,5 @@
 import { Given, When, Then } from '@cucumber/cucumber';
+import { assert } from 'console';
 import { Browser, chromium, firefox, Page } from "playwright"
 
 let browser: Browser; //represents the browser instance (e.g Chrome, Firefox) Opened by Playwright
@@ -19,50 +20,36 @@ Given('I navigate to webdriveruniversity hompepage', async () => {
 
 
 When('I click on the Contact Us button', async () => {
-    await page.pause();
-    await page.getByText("CONTACT US").click(); // Clicks the element with id contact-us
+    // await page.pause();
+   const contactUsButton = await page.getByRole('link', { name: 'CONTACT US Contact Us Form' });
+    await contactUsButton.click();
 });
 
-
-When('I type a valid first name', async () => {
-    // Write code here that turns the phrase above into concrete actions  
-    // return 'pending';
-        console.log("Executing: Step 1")
-
+When('I switch to the broswer Tab', async () => {
+    page = await context.waitForEvent('page');
+    await page.bringToFront();
 });
-
 
 When('I type a valid last name', async () => {
-    // Write code here that turns the phrase above into concrete actions  
-    // return 'pending';
-        console.log("Executing: Step 1")
-
+    const lastNameField = await page.getByPlaceholder( 'Last Name' );
+    await lastNameField.fill('Doe');
 });
 
 When('I type a valid email address', async () => {
-    // Write code here that turns the phrase above into concrete actions  
-    // return 'pending';
-        console.log("Executing: Step 1")
-
+    const emailField = await page.getByPlaceholder( 'Email Address' );
+    await emailField.fill('d6E0r@example.com');
 });
 
 When('I type a comment into the comment text area', async () => {
-    // Write code here that turns the phrase above into concrete actions  
-    // return 'pending';
-        console.log("Executing: Step 1")
-
+    const commentField = await page.getByPlaceholder( 'Comments' );
+    await commentField.fill('This is a test comment for the contact us form.');
 });
 
 When('I click on the submit button', async () => {
-    // Write code here that turns the phrase above into concrete actions  
-    // return 'pending';
-        console.log("Executing: Step 1")
-
+    const submitButton = await page.getByRole('button', { name: 'SUBMIT' });
+    await submitButton.click();
 });
 
 Then('I should be presented with a successful contact us submission message', async () => {
-    // Write code here that turns the phrase above into concrete actions  
-    // return 'pending';
-        console.log("Executing: Step 1")
-
+    const successMessage = await page.getByRole('heading', { name: 'Thank You for your Message!' });
 });
