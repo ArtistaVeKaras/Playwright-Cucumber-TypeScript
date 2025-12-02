@@ -27,6 +27,6 @@ Before(async function () {
 // After hook to close the browser after each scenario
 After(async function () {
     console.log("Closing browser after all scenarios");
-    // await pageFixture.context.close();
-    // await browser.close();
+    await pageFixture.context.close();
+    await browser.close();
 });
