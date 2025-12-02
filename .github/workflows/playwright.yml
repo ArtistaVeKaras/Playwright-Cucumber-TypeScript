@@ -39,9 +39,3 @@ jobs:
         run: npm ci
       - name: Run Cucumber (TypeScript)
         run: npm run cucumberWithTS
-      - uses: actions/upload-artifact@v4
-        if: ${{ !cancelled() }}
-        with:
-          name: cucumber-report
-          path: cucumber-report/
-          retention-days: 30
