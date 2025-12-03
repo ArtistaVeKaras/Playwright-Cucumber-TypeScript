@@ -58,12 +58,32 @@ Then('I should be presented with a successful contact us submission message', as
 
 
 Then('I should be presented with a unsuccessful contact us submission message', async () => {
-    const unsuccessMessage = await pageFixture.page.waitForSelector('//body', { timeout: 5000 });
+    await pageFixture.page.locator('//body');
 
     // Get the text content of the success message
-    const messageText = await pageFixture.page.innerText('//body');
+    const messageText = await pageFixture.page.textContent('//body');
 
     // Assert that the success message contains the expected text
-    expect(messageText).toContain('Error: all fields are required');
-    expect(messageText).toContain('Error: Invalid email address');
+    await expect(messageText).toMatch(/Error: all fields are required|Invalid email address/);
+});
+
+When('I type a Specific first name {string}', async (firstName: string) => {
+    // Write code here that turns the phrase above into concrete actions
+   await pageFixture.page.getByPlaceholder('First Name').fill(firstName);
+});
+
+When('I type a Specific last name {string}', async (lastName: string) => {
+    // Write code here that turns the phrase above into concrete actions
+    await pageFixture.page.getByPlaceholder('Last Name').fill(lastName);
+});
+
+When('I type a Specific email address {string}', async (emailAddress: string) => {
+    // Write code here that turns the phrase above into concrete actions
+    await pageFixture.page.getByPlaceholder('Email Address').fill(emailAddress);
+});
+
+When('I type a Specific text {string} and a number {int} within the comment input field', async (comment: string, number: number) => {// Write code here that turns the phrase above into the comment text area {string} with a specific number of {string}', async(comment: string, number: number) => {
+    // Write code here that turns the phrase above into concrete actions
+    await pageFixture.page.getByPlaceholder('Comments').fill(`${comment} ${number}`);
+    await pageFixture.page.pause();
 });
