@@ -19,7 +19,7 @@ AfterAll(async function () {
 // This hook runs before each scenario
 Before(async function () {
     console.log("Launching browser before each scenario");
-    browser = await chromium.launch({ headless: true });
+    browser = await chromium.launch({ headless: false });
     pageFixture.context = await browser.newContext({ viewport: { width: 1920, height: 1080 } });
     pageFixture.page = await pageFixture.context.newPage();
 });

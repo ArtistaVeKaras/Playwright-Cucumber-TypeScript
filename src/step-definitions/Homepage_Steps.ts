@@ -55,3 +55,15 @@ Then('I should be presented with a successful contact us submission message', as
     // Assert that the success message contains the expected text
     expect(messageText).toBe('Thank You for your Message!');
 });
+
+
+Then('I should be presented with a unsuccessful contact us submission message', async () => {
+    const unsuccessMessage = await pageFixture.page.waitForSelector('//body', { timeout: 5000 });
+
+    // Get the text content of the success message
+    const messageText = await pageFixture.page.innerText('//body');
+
+    // Assert that the success message contains the expected text
+    expect(messageText).toContain('Error: all fields are required');
+    expect(messageText).toContain('Error: Invalid email address');
+});
