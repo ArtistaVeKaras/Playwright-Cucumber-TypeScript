@@ -100,7 +100,23 @@ When('I type a email address {string} and a comment {string}', async (emailAddre
 });
 
 Then('I should be presented with a header text {string}', async (text: string) => {
-    const headerLocator = pageFixture.page.locator('//body');
-    await expect(headerLocator).toContainText(text);
+    await pageFixture.page.waitForSelector('//h1 | //body', {state: 'visible'});
+    
+    // get all elements that match the locator
+    const elements = await pageFixture.page.locator('//h1 | //body').elementHandles();
+    let foundElementText = '';
+
+    // loop through each element and get its text content
+    for(let element of elements) {
+        // get the inner text of the element
+        let elementText = await element.innerText();
+
+        if (elementText.includes(text)) {
+            foundElementText = elementText;
+            break;
+        }
+    }
+    // assert that the text content of the element includes the expected text
+    expect(foundElementText).toContain(text);
 
 });

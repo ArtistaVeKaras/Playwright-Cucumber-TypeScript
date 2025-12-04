@@ -21,7 +21,6 @@ Feature: WebdriverUniversity.com - Contact us Page
     #     And I click on the submit button
     #     Then I should be presented with a unsuccessful contact us submission message
 
-
     # Scenario: Valid Contact Us Form submisson - Using Specific Data
     #     And I type a Specific first name "John"
     #     And I type a Specific last name "Doe"
