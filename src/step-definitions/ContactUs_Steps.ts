@@ -69,12 +69,12 @@ When('I type a Specific text {string} and a number {int} within the comment inpu
     await pageFixture.page.getByPlaceholder('Comments').fill(`${comment} ${number}`);
 });
 
-When('I type a random first name', async   () => {
+When('I type a random first name', async () => {
     const randwomFirstName = faker.person.firstName();
     await pageFixture.page.getByPlaceholder('First Name').fill(randwomFirstName);
 });
 
-When('I type a randow last name', async () =>  {
+When('I type a randow last name', async () => {
     const randomLastName = faker.person.lastName();
     await pageFixture.page.getByPlaceholder('Last Name').fill(randomLastName);
 });
@@ -87,4 +87,20 @@ When('I type a random email address', async () => {
 When('I type a random comment into the comment text area', async () => {
     const randomComment = faker.lorem.sentence();
     await pageFixture.page.getByPlaceholder('Comments').fill(randomComment);
+});
+
+When('I type a firstName {word} and a lastName {word}', async (firstName: string, lastName: string) => {
+    await pageFixture.page.getByPlaceholder('First Name').fill(firstName);
+    await pageFixture.page.getByPlaceholder('Last Name').fill(lastName);
+});
+
+When('I type a email address {string} and a comment {string}', async (emailAddress: string, comment: string) => {
+    await pageFixture.page.getByPlaceholder('Email Address').fill(emailAddress);
+    await pageFixture.page.getByPlaceholder('Comments').fill(comment);
+});
+
+Then('I should be presented with a header text {string}', async (text: string) => {
+    const headerLocator = pageFixture.page.locator('//body');
+    await expect(headerLocator).toContainText(text);
+
 });

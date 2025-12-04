@@ -5,13 +5,13 @@ Feature: WebdriverUniversity.com - Contact us Page
         When I click on the Contact Us button
         And I switch to the broswer Tab
 
-    Scenario: Valid Contact Us Form submission
-        And I type a valid first name
-        And I type a valid last name
-        And I type a valid email address
-        And I type a comment into the comment text area
-        And I click on the submit button
-        Then I should be presented with a successful contact us submission message
+    # Scenario: Valid Contact Us Form submission
+    #     And I type a valid first name
+    #     And I type a valid last name
+    #     And I type a valid email address
+    #     And I type a comment into the comment text area
+    #     And I click on the submit button
+    #     Then I should be presented with a successful contact us submission message
 
     # Scenario: Invalid Contact Us Form submission
     #     And I type a valid first name
@@ -30,10 +30,22 @@ Feature: WebdriverUniversity.com - Contact us Page
     #     And I click on the submit button
     #     Then I should be presented with a successful contact us submission message
 
-        Scenario: Valid Contact Us Form submission - With faker data
-        And I type a random first name
-        And I type a randow last name
-        And I type a random email address
-        And I type a random comment into the comment text area
+    # Scenario: Valid Contact Us Form submission - With faker data
+    #     And I type a random first name
+    #     And I type a randow last name
+    #     And I type a random email address
+    #     And I type a random comment into the comment text area
+    #     And I click on the submit button
+    #     Then I should be presented with a successful contact us submission message
+
+    Scenario Outline:
+        And I type a firstName <firstname> and a lastName <lastName>
+        And I type a email address '<emailaddress>' and a comment '<comment>'
         And I click on the submit button
-        Then I should be presented with a successful contact us submission message
+        Then I should be presented with a header text '<message>'
+
+        Examples:
+            | firstname | lastName | emailaddress         | comment      | message                      |
+            | Alice     | Smith    | this_email@gmail.com | Hello there  | Thank You for your Message!  |
+            | Charlie   | Brown    | invalid_email.com    | Test comment | Error: Invalid email address |
+            | Bob       | Pully    | invalid_email.com    | Test comment | Error: Invalid email address |
