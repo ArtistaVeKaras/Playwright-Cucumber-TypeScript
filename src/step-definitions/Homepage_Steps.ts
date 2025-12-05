@@ -14,6 +14,11 @@ When('I click on the Contact Us button', async () => {
     await contactUsButton.click();
 });
 
+When('I click on the Login Portal button', async () => {
+    const loginButton = await pageFixture.page.getByText('LOGIN PORTAL', { exact: true })
+    await loginButton.click();
+});
+
 When('I switch to the broswer Tab', async () => {
 
     // waitForEvent returns the new Page directly (safer than indexing)

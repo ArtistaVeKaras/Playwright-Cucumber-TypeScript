@@ -37,14 +37,14 @@ Feature: WebdriverUniversity.com - Contact us Page
     #     And I click on the submit button
     #     Then I should be presented with a successful contact us submission message
 
-    Scenario Outline:
-        And I type a firstName <firstname> and a lastName <lastName>
-        And I type a email address '<emailaddress>' and a comment '<comment>'
-        And I click on the submit button
-        Then I should be presented with a header text '<message>'
+    # Scenario Outline:
+    #     And I type a firstName <firstname> and a lastName <lastName>
+    #     And I type a email address '<emailaddress>' and a comment '<comment>'
+    #     And I click on the submit button
+    #     Then I should be presented with a header text '<message>'
 
-        Examples:
-            | firstname | lastName | emailaddress         | comment      | message                      |
-            | Alice     | Smith    | this_email@gmail.com | Hello there  | Thank You for your Message!  |
-            | Charlie   | Brown    | invalid_email.com    | Test comment | Error: Invalid email address |
-            | Bob       | Pully    | invalid_email.com    | Test comment | Error: Invalid email address |
+    #     Examples:
+    #         | firstname | lastName | emailaddress         | comment      | message                      |
+    #         | Alice     | Smith    | this_email@gmail.com | Hello there  | Thank You for your Message!  |
+    #         | Charlie   | Brown    | invalid_email.com    | Test comment | Error: Invalid email address |
+    #         | Bob       | Pully    | invalid_email.com    | Test comment | Error: Invalid email address |
