@@ -1,8 +1,15 @@
-import { When, Then } from '@cucumber/cucumber';
+import { Given, When, Then } from '@cucumber/cucumber';
 import { pageFixture } from './hooks/browserContextFixture';
 import { expect } from '@playwright/test';
 
 let alertMessage: string;
+
+const loginUrl = 'https://www.webdriveruniversity.com/Login-Portal/index.html?'
+
+Given('I navigate to webdriveruniversity login page', async () => {
+    // Navigates to the login page URL
+    await pageFixture.page.goto(loginUrl);
+});
 
 // This scenario uses hardcoded valid credentials
 When('I type a valid username', async () => {
