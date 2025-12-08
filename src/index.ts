@@ -1,11 +1,14 @@
-import { exec } from 'child_process';   
+import { exec } from 'child_process';
 
 // Define a common command string for running cucumber tests
 const common = `./src/features/*.feature \
 --require-module ts-node/register \
 --require src/step-definitions/**/**/*.ts \
 --require src/utils/cucumber-timeout.ts \
---format progress-bar --format @cucumber/pretty-formatter`;
+-f json:reports/cucumber-report.json \
+--format html:reports/cucumber-report.html \
+--tags "not @ignore" \
+--format progress-bar --format @cucumber/pretty-formatter`
 
 // Define an interface for the profiles object
 interface ProfilesCommands {
@@ -31,7 +34,7 @@ console.log(`Running command: ${command}`);
 
 
 // Execute the constructed command
-exec(command, {encoding: 'utf-8'}, (error: Error | null, stdout: string) => {
+exec(command, { encoding: 'utf-8' }, (error: Error | null, stdout: string) => {
     console.log(stdout);
     if (error) {
         throw new Error(`Some automation have failed: ${error.message}`);

@@ -1,4 +1,4 @@
-import { BeforeAll, AfterAll, Before, After } from "@cucumber/cucumber";
+import { BeforeAll, AfterAll, Before, After, Status } from "@cucumber/cucumber";
 import { Browser, chromium } from "playwright";
 import { pageFixture } from "./browserContextFixture";
 
@@ -25,8 +25,21 @@ Before(async function () {
 });
 
 // After hook to close the browser after each scenario
-After(async function () {
-    console.log("Closing browser after all scenarios");
-    await pageFixture.context.close();
-    await browser.close();
-});
+// For failed scenarios, capture a screenshot and attach it to the report folder
+After(async function ({ pickle, result }) {
+    if (result?.status === Status.FAILED) {
+        if (pageFixture.page) {
+            const screenshotPath = `./reports/screenshots/${pickle.name}-${Date.now()}.png`;
+                const image = await pageFixture.page.screenshot({
+                    path: screenshotPath,
+                    type: 'png',
+                });
+                this.attach(image, 'image/png');
+            } else {
+                console.error("Page is not available to take screenshot");
+            }
+        }
+        console.log("Closing browser after all scenarios");
+        await pageFixture.context.close();
+        await browser.close();
+    });

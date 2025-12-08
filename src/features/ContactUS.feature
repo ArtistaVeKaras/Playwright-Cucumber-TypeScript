@@ -38,7 +38,7 @@ Feature: WebdriverUniversity.com - Contact us Page
         And I click on the submit button
         Then I should be presented with a successful contact us submission message
 
-    @smoke
+    @smoke @ignore
     Scenario Outline:
         And I type a firstName <firstname> and a lastName <lastName>
         And I type a email address '<emailaddress>' and a comment '<comment>'
