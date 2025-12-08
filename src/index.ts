@@ -14,10 +14,10 @@ interface ProfilesCommands {
 
 // Define a command strigns for different test profiles
 const profiles: ProfilesCommands = {
-    smoke: '${common}  --tags "@smoke"',
-    regression: '${common}  --tags "@regression"',
-    login: '${common}  --tags "@login"',
-    contactUs: '${common}  --tags "@contactUs"',
+    smoke: `${common} --tags "@smoke"`,
+    regression: `${common} --tags "@regression"`,
+    login: `${common} --tags "@login"`,
+    contactUs: `${common} --tags "@contact-us"`,
 };
 
 // Get the third command line argument to determine which profile to use

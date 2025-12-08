@@ -1,3 +1,4 @@
+@regression @login
 Feature: Login to Webdriver University Page
 
     Background: Navigate to the WebdriverUniversity
@@ -11,7 +12,6 @@ Feature: Login to Webdriver University Page
         Then I should be presented with a successful login message
 
     # Parameterized login
-    @smoke
     Scenario Outline: Valid and Invalid login
         And I type a username '<username>'
         And I type a password '<password>'
@@ -23,3 +23,9 @@ Feature: Login to Webdriver University Page
             | username     | password     | message              |
             | webdriver    | webdriver123 | validation succeeded |
             | invalid_user | valid_pass   | validation failed    |
+
+    @smoke
+    Scenario Outline: Valid and Invalid login - Reversed order
+        Examples:
+            | username  | password     | message              |
+            | webdriver | webdriver123 | validation succeeded |
