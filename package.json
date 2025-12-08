@@ -12,7 +12,8 @@
     "regression": "npx playwright test -grep @Regression --project=chromium",
     "test": "npx playwright test --project=chromium",
     "ci": "npx playwright test --project=chromium --workers=1",
-    "cucumberWithTS": "npx cucumber-js src/features/*.feature --require-module ts-node/register --require src/step-definitions/**/**/*.ts --require src/utils/cucumber-timeout.ts --format progress-bar --format @cucumber/pretty-formatter"
+    "cucumberWithTS": "npx cucumber-js src/features/Login.feature --require-module ts-node/register --require src/step-definitions/**/**/*.ts --require src/utils/cucumber-timeout.ts --format progress-bar --format @cucumber/pretty-formatter --tags @smoke",
+    "cucumber": "npx cucumber-js && ts-node ./src/index.ts"
   },
   "author": "",
   "license": "ISC",

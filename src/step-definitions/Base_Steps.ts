@@ -11,3 +11,7 @@ When('I switch to the broswer Tab', async () => {
     await pageFixture.page.setViewportSize({ width: 1920, height: 1080 });
 
 });
+
+When('I wait for {int} seconds', async (seconds: number) => {
+    await pageFixture.page.waitForTimeout(seconds * 1000);
+});
