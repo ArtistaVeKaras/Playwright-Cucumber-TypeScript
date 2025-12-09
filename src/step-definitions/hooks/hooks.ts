@@ -2,6 +2,18 @@ import { BeforeAll, AfterAll, Before, After, Status } from "@cucumber/cucumber";
 import { Browser, chromium } from "playwright";
 import { pageFixture } from "./browserContextFixture";
 
+// Load environment variables from .env file
+import { config as loadEnv } from 'dotenv';
+const env = loadEnv({ path: './env/.env' });
+
+// Create a configuration object for easy access to environment variables
+const config = {
+    browser: env.parsed?.UI_AUTOMATION_BROSWER || 'chromium',
+    headless: env.parsed?.UI_AUTOMATION_HEADLESS === 'true',
+    browserHeight: parseInt(process.env.BROSER_HEIGHT || '1080', 10),
+    browserWidth: parseInt(process.env.BROWSER_WIDTH || '1920', 10),
+};
+
 let browser: Browser;
 
 // BeforeAll hook to set up resources before any tests run
@@ -30,16 +42,16 @@ After(async function ({ pickle, result }) {
     if (result?.status === Status.FAILED) {
         if (pageFixture.page) {
             const screenshotPath = `./reports/screenshots/${pickle.name}-${Date.now()}.png`;
-                const image = await pageFixture.page.screenshot({
-                    path: screenshotPath,
-                    type: 'png',
-                });
-                this.attach(image, 'image/png');
-            } else {
-                console.error("Page is not available to take screenshot");
-            }
+            const image = await pageFixture.page.screenshot({
+                path: screenshotPath,
+                type: 'png',
+            });
+            this.attach(image, 'image/png');
+        } else {
+            console.error("Page is not available to take screenshot");
         }
-        console.log("Closing browser after all scenarios");
-        await pageFixture.context.close();
-        await browser.close();
-    });
+    }
+    console.log("Closing browser after all scenarios");
+    await pageFixture.context.close();
+    await browser.close();
+});
