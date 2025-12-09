@@ -1,5 +1,5 @@
 import { BeforeAll, AfterAll, Before, After, Status } from "@cucumber/cucumber";
-import { Browser, chromium } from "playwright";
+import { Browser, BrowserType, chromium, firefox, webkit } from "playwright";
 import { pageFixture } from "./browserContextFixture";
 
 // Load environment variables from .env file
@@ -14,7 +14,37 @@ const config = {
     browserWidth: parseInt(process.env.BROWSER_WIDTH || '1920', 10),
 };
 
-let browser: Browser;
+// Createa a dictionay mapping browser names to Playwright browser types
+const browsers: { [key: string]: BrowserType } = {
+    'chromium': chromium,
+    'firefox:': firefox,
+    'webkit': webkit,
+};
+
+
+let browserInstance: Browser | null = null;
+
+async function initializeBrowserContext(selectedBrowser: string): Promise<Browser> {
+    const launchBrowser = browsers[selectedBrowser];
+    if (!launchBrowser) {
+        throw new Error(`Unsupported browser: ${selectedBrowser}`);
+    }
+    return await launchBrowser.launch({ headless: config.headless });
+}
+
+async function initializePage(): Promise<void> {
+    if (!browserInstance) {
+        throw new Error("Browser instance is null. Cannot create page.");
+    }
+    pageFixture.context = await browserInstance.newContext({
+        ignoreHTTPSErrors: true,
+    });
+    pageFixture.page = await pageFixture.context.newPage();
+    await pageFixture.page.setViewportSize({
+        width: config.browserWidth,
+        height: config.browserHeight,
+    });
+}
 
 // BeforeAll hook to set up resources before any tests run
 BeforeAll(async function () {
@@ -30,10 +60,15 @@ AfterAll(async function () {
 
 // This hook runs before each scenario
 Before(async function () {
-    console.log("Launching browser before each scenario");
-    browser = await chromium.launch({ headless: false });
-    pageFixture.context = await browser.newContext({ viewport: { width: 1920, height: 1080 } });
-    pageFixture.page = await pageFixture.context.newPage();
+    try {
+        console.log("Launching browser before each scenario");
+        browserInstance = await initializeBrowserContext(config.browser);
+        await initializePage();
+    } catch (error) {
+        console.error("Error during browser initialization:", error);
+        throw error; // Rethrow to fail the scenario if initialization fails
+    }
+
 });
 
 // After hook to close the browser after each scenario
@@ -51,7 +86,9 @@ After(async function ({ pickle, result }) {
             console.error("Page is not available to take screenshot");
         }
     }
-    console.log("Closing browser after all scenarios");
-    await pageFixture.context.close();
-    await browser.close();
+    if (browserInstance) {
+        console.log("Closing browser after each scenario");
+        await pageFixture.page?.close();
+        await browserInstance.close();
+    }
 });
