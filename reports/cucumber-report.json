@@ -4,25 +4,103 @@
     "elements": [
       {
         "description": "",
-        "id": "login-to-webdriver-university-page;valid-and-invalid-login---reversed-order",
+        "id": "login-to-webdriver-university-page;valid-and-invalid-login",
         "keyword": "Scenario Outline",
-        "line": 31,
-        "name": "Valid and Invalid login - Reversed order",
+        "line": 25,
+        "name": "Valid and Invalid login",
         "steps": [
           {
             "keyword": "Before",
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 2989611899
+              "duration": 5220621100
             }
           },
           {
-            "keyword": "Before",
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "I navigate to webdriveruniversity login page",
+            "match": {
+              "location": "src\\step-definitions\\Login_Steps.ts:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 943871400
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 17,
+            "name": "I type a username 'webdriver'",
+            "match": {
+              "location": "src\\step-definitions\\Login_Steps.ts:39"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 187285700
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 18,
+            "name": "I type a password 'webdriver123'",
+            "match": {
+              "location": "src\\step-definitions\\Login_Steps.ts:43"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 82666699
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 19,
+            "name": "I wait for 2 seconds",
+            "match": {
+              "location": "src\\step-definitions\\Base_Steps.ts:25"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2014565499
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 20,
+            "name": "I click on the login button",
+            "match": {
+              "location": "src\\step-definitions\\Login_Steps.ts:23"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 460556999
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 21,
+            "name": "I should be presented with a login message 'validation succeeded'",
+            "match": {
+              "location": "src\\step-definitions\\Login_Steps.ts:47"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 3736399
+            }
+          },
+          {
+            "keyword": "After",
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 1182072100
+              "duration": 324784400
             }
           }
         ],
@@ -37,7 +115,125 @@
           },
           {
             "name": "@smoke",
-            "line": 27
+            "line": 15
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "login-to-webdriver-university-page;valid-and-invalid-login",
+        "keyword": "Scenario Outline",
+        "line": 26,
+        "name": "Valid and Invalid login",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 885947200
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "I navigate to webdriveruniversity login page",
+            "match": {
+              "location": "src\\step-definitions\\Login_Steps.ts:9"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 813959899
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 17,
+            "name": "I type a username 'invalid_user'",
+            "match": {
+              "location": "src\\step-definitions\\Login_Steps.ts:39"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 188809099
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 18,
+            "name": "I type a password 'valid_pass'",
+            "match": {
+              "location": "src\\step-definitions\\Login_Steps.ts:43"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 84375500
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 19,
+            "name": "I wait for 2 seconds",
+            "match": {
+              "location": "src\\step-definitions\\Base_Steps.ts:25"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2011833000
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 20,
+            "name": "I click on the login button",
+            "match": {
+              "location": "src\\step-definitions\\Login_Steps.ts:23"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 429424699
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 21,
+            "name": "I should be presented with a login message 'validation failed'",
+            "match": {
+              "location": "src\\step-definitions\\Login_Steps.ts:47"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1239199
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 233051800
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@regression",
+            "line": 1
+          },
+          {
+            "name": "@login",
+            "line": 1
+          },
+          {
+            "name": "@smoke",
+            "line": 15
           }
         ],
         "type": "scenario"

@@ -23,3 +23,6 @@ node_modules/
 
 #reports
 /reports/screenshots/
+
+# Environment variables file
+/env/.env
