@@ -1,0 +1,34 @@
+const { firefox, chromium } = require('playwright');  // Or 'chromium' or 'webkit'.
+import { test, expect } from '@playwright/test';
+
+test('has title', async () => {
+    const browser = await firefox.launch();
+    const page = await browser.newPage();
+    await page.goto('https://example.com');
+    await browser.close();
+});
+
+test('simulate two users loggin at the same time', async () => {
+    const browser = await chromium.launch();
+
+    const user1 = await browser.newContext();
+    const user2 = await browser.newContext();
+
+    const page1 = await user1.newPage();
+    const page2 = await user2.newPage();
+
+    await page1.goto("https://example.com");
+    await page2.goto("https://example.com");
+});
+
+test("parallel test A", async ({ browser }) => {
+  const context = await browser.newContext();
+  const page = await context.newPage();
+  await page.goto("https://ebay.com/");
+});
+
+test("parallel test B", async ({ browser }) => {
+  const context = await browser.newContext();
+  const page = await context.newPage();
+  await page.goto("https://apple.com/");
+});
