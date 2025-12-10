@@ -2,13 +2,22 @@ import { Given, When, Then } from '@cucumber/cucumber';
 import { pageFixture } from './hooks/browserContextFixture';
 import { expect } from '@playwright/test';
 
+import dotenv from 'dotenv';
+import logger from '../logger/logger';
+dotenv.config({ path : './env/.env' });
+
 let alertMessage: string;
 
 const loginUrl = 'https://www.webdriveruniversity.com/Login-Portal/index.html?'
 
+// Navigates to the login page URL
 Given('I navigate to webdriveruniversity login page', async () => {
-    // Navigates to the login page URL
-    await pageFixture.page.goto(loginUrl);
+    try {
+        await pageFixture.page.goto(process.env.LOGIN_URL || loginUrl); 
+        logger.info(`Navigating to Login URL: ${process.env.LOGIN_URL || loginUrl}`);
+    } catch (error) {
+        logger.error('Error navigating to login page:', error);
+    }
 });
 
 // This scenario uses hardcoded valid credentials

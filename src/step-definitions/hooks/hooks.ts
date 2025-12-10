@@ -8,7 +8,7 @@ const env = loadEnv({ path: './env/.env' });
 
 // Create a configuration object for easy access to environment variables
 const config = {
-    browser: env.parsed?.UI_AUTOMATION_BROSWER || 'webkit',
+    browser: env.parsed?.UI_AUTOMATION_BROSWER || 'chromium',
     headless: env.parsed?.UI_AUTOMATION_HEADLESS === 'true',
     browserHeight: parseInt(process.env.BROSER_HEIGHT || '1080', 10),
     browserWidth: parseInt(process.env.BROWSER_WIDTH || '1920', 10),

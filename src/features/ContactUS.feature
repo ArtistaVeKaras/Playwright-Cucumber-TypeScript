@@ -1,4 +1,4 @@
-@regression @contact-us
+@regression 
 Feature: WebdriverUniversity.com - Contact us Page
 
     Background: Navigate to the WebdriverUniversity
@@ -6,6 +6,7 @@ Feature: WebdriverUniversity.com - Contact us Page
         When I click on the Contact Us button
         And I switch to the broswer Tab
 
+    @contact-us
     Scenario: Valid Contact Us Form submission
         And I type a valid first name
         And I type a valid last name
