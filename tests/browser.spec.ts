@@ -3,8 +3,10 @@ import { test, expect } from '@playwright/test';
 
 test('has title', async () => {
     const browser = await firefox.launch();
-    const page = await browser.newPage();
+    const context = await browser.newContext();
+    const page = await context.newPage();
     await page.goto('https://example.com');
+    await context.close();
     await browser.close();
 });
 
@@ -19,6 +21,10 @@ test('simulate two users loggin at the same time', async () => {
 
     await page1.goto("https://example.com");
     await page2.goto("https://example.com");
+
+    await user1.close();
+    await user2.close();
+    await browser.close();
 });
 
 test("parallel test A", async ({ browser }) => {

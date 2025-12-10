@@ -20,6 +20,7 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
+    "@colors/colors": "^1.6.0",
     "@faker-js/faker": "^9.9.0",
     "@playwright/test": "^1.57.0",
     "@types/node": "^24.10.1",
@@ -27,7 +28,8 @@
     "express": "^5.1.0",
     "playwright-cli-select": "^1.0.8",
     "ts-node": "^10.9.2",
-    "typescript": "^5.9.3"
+    "typescript": "^5.9.3",
+    "winston": "^3.19.0"
   },
   "dependencies": {
     "@cucumber/cucumber": "^12.2.0",
