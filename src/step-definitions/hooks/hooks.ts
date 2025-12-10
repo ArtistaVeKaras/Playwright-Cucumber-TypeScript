@@ -1,6 +1,7 @@
 import { BeforeAll, AfterAll, Before, After, Status } from "@cucumber/cucumber";
 import { Browser, BrowserType, chromium, firefox, webkit } from "playwright";
 import { pageFixture } from "./browserContextFixture";
+import { setGlobalTimeouts } from "../../utils/playwright-timeouts";
 
 // Load environment variables from .env file
 import { config as loadEnv } from 'dotenv';
@@ -40,6 +41,7 @@ async function initializePage(): Promise<void> {
         ignoreHTTPSErrors: true,
     });
     pageFixture.page = await pageFixture.context.newPage();
+    await setGlobalTimeouts(pageFixture.page); // This line sets the global timeouts configured in the playwright-timeouts.ts
     await pageFixture.page.setViewportSize({
         width: config.browserWidth,
         height: config.browserHeight,
