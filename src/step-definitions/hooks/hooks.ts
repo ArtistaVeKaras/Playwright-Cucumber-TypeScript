@@ -2,9 +2,11 @@ import { BeforeAll, AfterAll, Before, After, Status } from "@cucumber/cucumber";
 import { Browser, BrowserType, chromium, firefox, webkit } from "playwright";
 import { pageFixture } from "./browserContextFixture";
 import { setGlobalTimeouts } from "../../utils/playwright-timeouts";
+import logger from '../../logger/logger';
 
 // Load environment variables from .env file
 import { config as loadEnv } from 'dotenv';
+import { log } from "console";
 const env = loadEnv({ path: './env/.env' });
 
 // Create a configuration object for easy access to environment variables
@@ -50,24 +52,24 @@ async function initializePage(): Promise<void> {
 
 // BeforeAll hook to set up resources before any tests run
 BeforeAll(async function () {
-    console.log("Setting up resources before all tests");
+    logger.info("Setting up resources before all tests");
     // You can add code here to initialize shared resources
 });
 
 // AfterAll hook to clean up resources after all tests have run
 AfterAll(async function () {
-    console.log("Cleaning up resources after all tests");
+    logger.info("Cleaning up resources after all tests");
     // You can add code here to clean up shared resources
 });
 
 // This hook runs before each scenario
 Before(async function () {
     try {
-        console.log("Launching browser before each scenario");
+        logger.info("Launching browser before each scenario");
         browserInstance = await initializeBrowserContext(config.browser);
         await initializePage();
     } catch (error) {
-        console.error("Error during browser initialization:", error);
+        logger.error("Error during browser initialization:", error);
         throw error; // Rethrow to fail the scenario if initialization fails
     }
 
@@ -85,11 +87,11 @@ After(async function ({ pickle, result }) {
             });
             this.attach(image, 'image/png');
         } else {
-            console.error("Page is not available to take screenshot");
+            logger.error("Page is not available to take screenshot");
         }
     }
     if (browserInstance) {
-        console.log("Closing browser after each scenario");
+        logger.info("Closing browser after each scenario");
         await pageFixture.page?.close();
         await browserInstance.close();
     }

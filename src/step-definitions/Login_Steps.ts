@@ -4,7 +4,7 @@ import { expect } from '@playwright/test';
 
 import dotenv from 'dotenv';
 import logger from '../logger/logger';
-dotenv.config({ path: './env/.env' });
+dotenv.config({ path : './env/.env' });
 
 let alertMessage: string;
 
@@ -13,7 +13,7 @@ const loginUrl = 'https://www.webdriveruniversity.com/Login-Portal/index.html?'
 // Navigates to the login page URL
 Given('I navigate to webdriveruniversity login page', async () => {
     try {
-        await pageFixture.page.goto(process.env.LOGIN_URL || loginUrl);
+        await pageFixture.page.goto(process.env.LOGIN_URL || loginUrl); 
         logger.info(`Navigating to Login URL: ${process.env.LOGIN_URL || loginUrl}`);
     } catch (error) {
         logger.error('Error navigating to login page:', error);
@@ -37,7 +37,7 @@ When('I click on the login button', async () => {
     });
     const loginButton = pageFixture.page.locator('#login-button');
     await loginButton.hover();
-    await loginButton.click({ force: true });
+    await loginButton.click({force: true});
 });
 
 Then('I should be presented with a successful login message', async () => {
