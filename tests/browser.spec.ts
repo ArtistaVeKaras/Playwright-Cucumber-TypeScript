@@ -38,3 +38,11 @@ test("parallel test B", async ({ browser }) => {
   const page = await context.newPage();
   await page.goto("https://apple.com/");
 });
+
+test.describe('group', {
+  tag: '@report',
+}, () => {
+  test('test report header', async ({ page }) => {
+    await page.goto('https://example.com');
+    await expect(page).toHaveTitle('Example Domain');});
+});
