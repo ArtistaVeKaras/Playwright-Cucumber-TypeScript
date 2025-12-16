@@ -2,7 +2,22 @@ import { Given, When, Then } from "@cucumber/cucumber";
 import { pageFixture } from "./hooks/browserContextFixture";
 import { expect } from "@playwright/test";
 import { faker } from '@faker-js/faker';
+import { CucumberWorld } from "./world/CucumberWorld";
+import logger from "../logger/logger";
 
+import dotenv from "dotenv";
+dotenv.config({ path: "./env/.env" });
+
+Given('I navigate to the contactUs hompepage', async function (this: CucumberWorld) {
+    try {
+        await pageFixture.page.goto(process.env.CONTACTUS_URL || 'https://www.webdriveruniversity.com/Contact-Us/contactus.html');
+        logger.info(`Accessing the contact us URL: ${process.env.CONTACTUS_URL || 'https://www.webdriveruniversity.com/Contact-Us/contactus.html'}`);
+        this.setBaseUrl('https://www.webdriveruniversity.com/Contact-Us/contactus.html');
+    }
+    catch (error) {
+        logger.error('Error navigating to contact us page:', error);
+    }
+});
 
 When('I type a valid first name', async () => {
     await pageFixture.page.getByPlaceholder('First Name').fill('John');
@@ -100,14 +115,14 @@ When('I type a email address {string} and a comment {string}', async (emailAddre
 });
 
 Then('I should be presented with a header text {string}', async (text: string) => {
-    await pageFixture.page.waitForSelector('//h1 | //body', {state: 'visible'});
-    
+    await pageFixture.page.waitForSelector('//h1 | //body', { state: 'visible' });
+
     // get all elements that match the locator
     const elements = await pageFixture.page.locator('//h1 | //body').elementHandles();
     let foundElementText = '';
 
     // loop through each element and get its text content
-    for(let element of elements) {
+    for (let element of elements) {
         // get the inner text of the element
         let elementText = await element.innerText();
 

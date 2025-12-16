@@ -1,27 +1,30 @@
 import { Given, When, Then } from '@cucumber/cucumber';
 import { pageFixture } from './hooks/browserContextFixture';
 import { expect } from '@playwright/test';
+import { CucumberWorld } from '../step-definitions/world/CucumberWorld';
+import logger from '../logger/logger';
 
 import dotenv from 'dotenv';
-import logger from '../logger/logger';
-dotenv.config({ path : './env/.env' });
+dotenv.config({ path: './env/.env' });
 
 let alertMessage: string;
 
 const loginUrl = 'https://www.webdriveruniversity.com/Login-Portal/index.html?'
 
 // Navigates to the login page URL
-Given('I navigate to webdriveruniversity login page', async () => {
+Given('I navigate to webdriveruniversity login page', async function (this: CucumberWorld) {
     try {
-        await pageFixture.page.goto(process.env.LOGIN_URL || loginUrl); 
-        logger.info(`Navigating to Login URL: ${process.env.LOGIN_URL || loginUrl}`);
+        await pageFixture.page.goto(process.env.LOGIN_URL || loginUrl);
+        logger.info(`Accessing the Login URL: ${process.env.LOGIN_URL || loginUrl}`);
+        this.setBaseUrl(loginUrl);
     } catch (error) {
         logger.error('Error navigating to login page:', error);
     }
 });
 
 // This scenario uses hardcoded valid credentials
-When('I type a valid username', async () => {
+When('I type a valid username', async function (this: CucumberWorld) {
+    logger.info(`Base URL: ${this.getBaseUrl()}`);
     await pageFixture.page.getByRole('textbox', { name: 'Username' }).fill('webdriver');
 });
 
@@ -37,7 +40,7 @@ When('I click on the login button', async () => {
     });
     const loginButton = pageFixture.page.locator('#login-button');
     await loginButton.hover();
-    await loginButton.click({force: true});
+    await loginButton.click({ force: true });
 });
 
 Then('I should be presented with a successful login message', async () => {

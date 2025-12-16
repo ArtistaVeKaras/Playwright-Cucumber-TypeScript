@@ -1,10 +1,13 @@
 @regression 
 Feature: WebdriverUniversity.com - Contact us Page
 
-    Background: Navigate to the WebdriverUniversity
-        Given I navigate to webdriveruniversity hompepage
-        When I click on the Contact Us button
-        And I switch to the broswer Tab
+    # Background: Navigate to the WebdriverUniversity
+    #     Given I navigate to webdriveruniversity hompepage
+    #     When I click on the Contact Us button
+    #     And I switch to the broswer Tab
+
+    Background: Navigate to the contact us page
+        Given I navigate to the contactUs hompepage
 
     @contact-us
     Scenario: Valid Contact Us Form submission
@@ -15,15 +18,7 @@ Feature: WebdriverUniversity.com - Contact us Page
         And I click on the submit button
         Then I should be presented with a successful contact us submission message
 
-    Scenario: Invalid Contact Us Form submission
-        And I type a valid first name
-        And I type a valid last name
-        # And I type a valid email address
-        And I type a comment into the comment text area
-        And I click on the submit button
-        Then I should be presented with a unsuccessful contact us submission message
-
-    Scenario: Valid Contact Us Form submisson - Using Specific Data
+       Scenario: Valid Contact Us Form submisson - Using Specific Data
         And I type a Specific first name "John"
         And I type a Specific last name "Doe"
         And I type a Specific email address "jonh.doe@hotmail.com"

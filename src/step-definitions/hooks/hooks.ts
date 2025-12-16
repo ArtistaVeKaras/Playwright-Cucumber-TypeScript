@@ -6,7 +6,6 @@ import logger from '../../logger/logger';
 
 // Load environment variables from .env file
 import { config as loadEnv } from 'dotenv';
-import { log } from "console";
 const env = loadEnv({ path: './env/.env' });
 
 // Create a configuration object for easy access to environment variables
