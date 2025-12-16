@@ -23,4 +23,4 @@ Feature: Login to Webdriver University Page
         Examples:
             | username     | password     | message              |
             | webdriver    | webdriver123 | validation succeeded |
-            # | invalid_user | valid_pass   | validation failed    |
+            | invalid_user | valid_pass   | validation failed    |

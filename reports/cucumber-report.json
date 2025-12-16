@@ -14,7 +14,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 1777340000
+              "duration": 3240440099
             }
           },
           {
@@ -27,7 +27,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 1069215599
+              "duration": 1269752400
             }
           },
           {
@@ -40,7 +40,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 160631900
+              "duration": 326424299
             }
           },
           {
@@ -53,7 +53,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 58567900
+              "duration": 79910299
             }
           },
           {
@@ -66,7 +66,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 2015464499
+              "duration": 2035667600
             }
           },
           {
@@ -79,7 +79,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 409315300
+              "duration": 744988299
             }
           },
           {
@@ -92,7 +92,7 @@
             },
             "result": {
               "status": "passed",
-              "duration": 15141199
+              "duration": 11707099
             }
           },
           {
@@ -100,7 +100,121 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 1000439099
+              "duration": 3601477100
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@regression",
+            "line": 1
+          },
+          {
+            "name": "@login",
+            "line": 15
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "description": "",
+        "id": "login-to-webdriver-university-page;valid-and-invalid-login",
+        "keyword": "Scenario Outline",
+        "line": 26,
+        "name": "Valid and Invalid login",
+        "steps": [
+          {
+            "keyword": "Before",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 3052777699
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "line": 5,
+            "name": "I navigate to webdriveruniversity login page",
+            "match": {
+              "location": "src\\step-definitions\\Login_Steps.ts:14"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 1290626299
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 17,
+            "name": "I type a username 'invalid_user'",
+            "match": {
+              "location": "src\\step-definitions\\Login_Steps.ts:48"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 339855999
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 18,
+            "name": "I type a password 'valid_pass'",
+            "match": {
+              "location": "src\\step-definitions\\Login_Steps.ts:52"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 85433999
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 19,
+            "name": "I wait for 2 seconds",
+            "match": {
+              "location": "src\\step-definitions\\Base_Steps.ts:25"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 2037334399
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "line": 20,
+            "name": "I click on the login button",
+            "match": {
+              "location": "src\\step-definitions\\Login_Steps.ts:32"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 455507299
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "line": 21,
+            "name": "I should be presented with a login message 'validation failed'",
+            "match": {
+              "location": "src\\step-definitions\\Login_Steps.ts:56"
+            },
+            "result": {
+              "status": "passed",
+              "duration": 26112999
+            }
+          },
+          {
+            "keyword": "After",
+            "hidden": true,
+            "result": {
+              "status": "passed",
+              "duration": 4210437200
             }
           }
         ],

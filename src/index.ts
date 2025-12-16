@@ -1,4 +1,10 @@
 import { exec } from 'child_process';
+import dotenv from 'dotenv';
+dotenv.config({ path : './env/.env' });
+
+// Settint rety attempt frome env variable
+const retryAttempts = process.env.RETRY_ATTEMPTS || '0';
+const parallelTests = process.env.PARALLEL_TESTS || '1';
 
 // Define a common command string for running cucumber tests
 const common = `./src/features/*.feature \
@@ -8,6 +14,8 @@ const common = `./src/features/*.feature \
 -f json:reports/cucumber-report.json \
 --format html:reports/cucumber-report.html \
 --tags "not @ignore" \
+--parallel ${parallelTests} \
+--retry ${retryAttempts} \
 --format progress-bar --format @cucumber/pretty-formatter`
 
 // Define an interface for the profiles object
