@@ -4,17 +4,17 @@
     "elements": [
       {
         "description": "",
-        "id": "webdriveruniversity.com---contact-us-page;valid-contact-us-form-submission",
+        "id": "webdriveruniversity.com---contact-us-page;valid-contact-us-form-submission---with-faker-data",
         "keyword": "Scenario",
-        "line": 13,
-        "name": "Valid Contact Us Form submission",
+        "line": 29,
+        "name": "Valid Contact Us Form submission - With faker data",
         "steps": [
           {
             "keyword": "Before",
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 1749851200
+              "duration": 1754627700
             }
           },
           {
@@ -27,85 +27,85 @@
             },
             "result": {
               "status": "passed",
-              "duration": 674847099
+              "duration": 624140500
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 14,
-            "name": "I type a valid first name",
+            "line": 30,
+            "name": "I type a random first name",
             "match": {
-              "location": "src\\step-definitions\\ContactUs_Steps.ts:22"
+              "location": "src\\step-definitions\\ContactUs_Steps.ts:88"
             },
             "result": {
               "status": "passed",
-              "duration": 102544900
+              "duration": 82336699
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 15,
-            "name": "I type a valid last name",
+            "line": 31,
+            "name": "I type a randow last name",
             "match": {
-              "location": "src\\step-definitions\\ContactUs_Steps.ts:26"
+              "location": "src\\step-definitions\\ContactUs_Steps.ts:94"
             },
             "result": {
               "status": "passed",
-              "duration": 21789099
+              "duration": 36192300
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 16,
-            "name": "I type a valid email address",
+            "line": 32,
+            "name": "I type a random email address",
             "match": {
-              "location": "src\\step-definitions\\ContactUs_Steps.ts:31"
+              "location": "src\\step-definitions\\ContactUs_Steps.ts:100"
             },
             "result": {
               "status": "passed",
-              "duration": 24638700
+              "duration": 34081599
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 17,
-            "name": "I type a comment into the comment text area",
+            "line": 33,
+            "name": "I type a random comment into the comment text area",
             "match": {
-              "location": "src\\step-definitions\\ContactUs_Steps.ts:36"
+              "location": "src\\step-definitions\\ContactUs_Steps.ts:106"
             },
             "result": {
               "status": "passed",
-              "duration": 23880100
+              "duration": 24294179499
             }
           },
           {
             "arguments": [],
             "keyword": "And ",
-            "line": 18,
+            "line": 34,
             "name": "I click on the submit button",
             "match": {
               "location": "src\\step-definitions\\ContactUs_Steps.ts:41"
             },
             "result": {
               "status": "passed",
-              "duration": 177904699
+              "duration": 478472900
             }
           },
           {
             "arguments": [],
             "keyword": "Then ",
-            "line": 19,
+            "line": 35,
             "name": "I should be presented with a successful contact us submission message",
             "match": {
               "location": "src\\step-definitions\\ContactUs_Steps.ts:46"
             },
             "result": {
               "status": "passed",
-              "duration": 137014999
+              "duration": 189288000
             }
           },
           {
@@ -113,7 +113,7 @@
             "hidden": true,
             "result": {
               "status": "passed",
-              "duration": 447708499
+              "duration": 468637399
             }
           }
         ],
@@ -124,7 +124,7 @@
           },
           {
             "name": "@contact-us",
-            "line": 12
+            "line": 28
           }
         ],
         "type": "scenario"

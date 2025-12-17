@@ -44,7 +44,7 @@ When('I click on the submit button', async () => {
 });
 
 Then('I should be presented with a successful contact us submission message', async () => {
-    const successMessage = await pageFixture.page.waitForSelector('#contact_reply h1', { timeout: 5000 });
+    await pageFixture.page.waitForSelector('#contact_reply h1', { timeout: 5000 });
 
     // Get the text content of the success message
     const messageText = await pageFixture.page.innerText('#contact_reply h1');
@@ -84,24 +84,29 @@ When('I type a Specific text {string} and a number {int} within the comment inpu
     await pageFixture.page.getByPlaceholder('Comments').fill(`${comment} ${number}`);
 });
 
-When('I type a random first name', async () => {
+// This scenario uses parameterized credentials with faker and cucumberWorld
+When('I type a random first name', async function (this: CucumberWorld) {
     const randwomFirstName = faker.person.firstName();
+    this.setFirstName(randwomFirstName);
     await pageFixture.page.getByPlaceholder('First Name').fill(randwomFirstName);
 });
 
-When('I type a randow last name', async () => {
+When('I type a randow last name', async function (this: CucumberWorld) {
     const randomLastName = faker.person.lastName();
+    this.setLastName(randomLastName);
     await pageFixture.page.getByPlaceholder('Last Name').fill(randomLastName);
 });
 
-When('I type a random email address', async () => {
+When('I type a random email address', async function (this: CucumberWorld) {
     const randomEmail = faker.internet.email();
+    this.setEmail(randomEmail);
     await pageFixture.page.getByPlaceholder('Email Address').fill(randomEmail);
 });
 
-When('I type a random comment into the comment text area', async () => {
+When('I type a random comment into the comment text area', async function (this: CucumberWorld) {
     const randomComment = faker.lorem.sentence();
-    await pageFixture.page.getByPlaceholder('Comments').fill(randomComment);
+    await pageFixture.page.getByPlaceholder('Comments').fill(`Comment: ${randomComment}! \n Please contact me on:\n  ${this.getFirstName()} \n ${this.getLastName()} \n ${this.getEmail()}`);
+    await pageFixture.page.pause();
 });
 
 When('I type a firstName {word} and a lastName {word}', async (firstName: string, lastName: string) => {
