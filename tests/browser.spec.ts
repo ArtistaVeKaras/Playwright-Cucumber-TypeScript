@@ -39,7 +39,7 @@ test("parallel test B", async ({ browser }) => {
   await page.goto("https://apple.com/");
 });
 
-test.describe('group', {
+test.describe('group testing', {
   tag: '@report',
 }, () => {
   test('test report header', async ({ page }) => {
