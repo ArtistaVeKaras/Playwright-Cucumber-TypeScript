@@ -2,12 +2,12 @@
 Feature: WebdriverUniversity.com - Contact us Page
 
     # Background: Navigate to the WebdriverUniversity
-    #     Given I navigate to webdriveruniversity hompepage
+    #     Given I navigate to webdriveruniversity homepage
     #     When I click on the Contact Us button
-    #     And I switch to the broswer Tab
+    #     And I switch to the browser Tab
 
     Background: Navigate to the contact us page
-        Given I navigate to the contactUs hompepage
+        Given I navigate to the contactUs homepage
 
     Scenario: Valid Contact Us Form submission
         And I type a valid first name
@@ -17,7 +17,7 @@ Feature: WebdriverUniversity.com - Contact us Page
         And I click on the submit button
         Then I should be presented with a successful contact us submission message
 
-    Scenario: Valid Contact Us Form submisson - Using Specific Data
+    Scenario: Valid Contact Us Form submission - Using Specific Data
         And I type a Specific first name "John"
         And I type a Specific last name "Doe"
         And I type a Specific email address "jonh.doe@hotmail.com"
@@ -28,7 +28,7 @@ Feature: WebdriverUniversity.com - Contact us Page
     @contact-us
     Scenario: Valid Contact Us Form submission - With faker data
         And I type a random first name
-        And I type a randow last name
+        And I type a random last name
         And I type a random email address
         And I type a random comment into the comment text area
         And I click on the submit button

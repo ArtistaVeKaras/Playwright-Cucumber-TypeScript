@@ -8,31 +8,39 @@ import logger from "../logger/logger";
 import dotenv from "dotenv";
 dotenv.config({ path: "./env/.env" });
 
-Given('I navigate to the contactUs hompepage', async function (this: CucumberWorld) {
+const contactUsUrl = 'https://www.webdriveruniversity.com/Contact-Us/contactus.html';
+// TODO: add URL from env variable if exists
+
+Given('I navigate to the contactUs homepage', async function (this: CucumberWorld) {
     try {
         await pageFixture.page.goto(process.env.CONTACTUS_URL || 'https://www.webdriveruniversity.com/Contact-Us/contactus.html');
         logger.info(`Accessing the contact us URL: ${process.env.CONTACTUS_URL || 'https://www.webdriveruniversity.com/Contact-Us/contactus.html'}`);
-        this.setBaseUrl('https://www.webdriveruniversity.com/Contact-Us/contactus.html');
+        this.setBaseUrl(contactUsUrl);
+        logger.info(`Getting the Base URL from the setter method : ${this.getBaseUrl()}`);
     }
     catch (error) {
         logger.error('Error navigating to contact us page:', error);
     }
 });
 
+// This scenario uses hardcoded valid contact us form data
 When('I type a valid first name', async () => {
     await pageFixture.page.getByPlaceholder('First Name').fill('John');
 });
 
+// This scenario uses hardcoded valid contact us form data
 When('I type a valid last name', async () => {
     const lastNameField = await pageFixture.page.getByPlaceholder('Last Name');
     await lastNameField.fill('Doe');
 });
 
+// This scenario uses hardcoded valid contact us form data
 When('I type a valid email address', async () => {
     const emailField = await pageFixture.page.getByPlaceholder('Email Address');
     await emailField.fill('d6E0r@example.com');
 });
 
+// This scenario uses hardcoded valid contact us form data
 When('I type a comment into the comment text area', async () => {
     const commentField = await pageFixture.page.getByPlaceholder('Comments');
     await commentField.fill('This is a test comment for the contact us form.');
@@ -79,19 +87,19 @@ When('I type a Specific email address {string}', async (emailAddress: string) =>
     await pageFixture.page.getByPlaceholder('Email Address').fill(emailAddress);
 });
 
-When('I type a Specific text {string} and a number {int} within the comment input field', async (comment: string, number: number) => {// Write code here that turns the phrase above into the comment text area {string} with a specific number of {string}', async(comment: string, number: number) => {
-    // Write code here that turns the phrase above into concrete actions
+When('I type a Specific text {string} and a number {int} within the comment input field', async (comment: string, number: number) => {
+    // Write code here that turns the phrase above into the comment text area {string} with a specific number of {string}', async(comment: string, number: number) => {
     await pageFixture.page.getByPlaceholder('Comments').fill(`${comment} ${number}`);
 });
 
 // This scenario uses parameterized credentials with faker and cucumberWorld
 When('I type a random first name', async function (this: CucumberWorld) {
-    const randwomFirstName = faker.person.firstName();
-    this.setFirstName(randwomFirstName);
-    await pageFixture.page.getByPlaceholder('First Name').fill(randwomFirstName);
+    const randomFirstName = faker.person.firstName();
+    this.setFirstName(randomFirstName);
+    await pageFixture.page.getByPlaceholder('First Name').fill(randomFirstName);
 });
 
-When('I type a randow last name', async function (this: CucumberWorld) {
+When('I type a random last name', async function (this: CucumberWorld) {
     const randomLastName = faker.person.lastName();
     this.setLastName(randomLastName);
     await pageFixture.page.getByPlaceholder('Last Name').fill(randomLastName);
@@ -101,12 +109,12 @@ When('I type a random email address', async function (this: CucumberWorld) {
     const randomEmail = faker.internet.email();
     this.setEmail(randomEmail);
     await pageFixture.page.getByPlaceholder('Email Address').fill(randomEmail);
-});
+})
 
 When('I type a random comment into the comment text area', async function (this: CucumberWorld) {
     const randomComment = faker.lorem.sentence();
-    await pageFixture.page.getByPlaceholder('Comments').fill(`Comment: ${randomComment}! \n Please contact me on:\n  ${this.getFirstName()} \n ${this.getLastName()} \n ${this.getEmail()}`);
-    await pageFixture.page.pause();
+    await pageFixture.page.getByPlaceholder('Comments').fill(`Comment: ${randomComment}! 
+        \n Please contact me on:\n  ${this.getFirstName()} \n ${this.getLastName()} \n ${this.getEmail()}`);
 });
 
 When('I type a firstName {word} and a lastName {word}', async (firstName: string, lastName: string) => {

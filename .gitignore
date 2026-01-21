@@ -10,7 +10,7 @@
 # Other specific files or directories
 *.log
 *.tmp
-*.env# dist
+*.env
 /dist/
 
 # Playwright
