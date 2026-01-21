@@ -12,7 +12,7 @@
     "regression": "npx playwright test -grep @Regression --project=chromium",
     "test": "npx playwright test --project=chromium",
     "ci": "npx playwright test --project=chromium --workers=1",
-    "cucumberWithTS": "npx cucumber-js src/features/Login.feature --require-module ts-node/register --require src/step-definitions/**/**/*.ts --require src/utils/cucumber-timeout.ts --format progress-bar --format @cucumber/pretty-formatter --tags @smoke",
+    "cucumberWithTS": "npx cucumber-js src/features/Login.feature --require-module ts-node/register --require src/step-definitions/**/**/*.ts --require src/utils/cucumber-timeout.ts --format progress-bar --format @cucumber/pretty-formatter --tags @login",
     "precucumber": "rimraf reports && mkdir reports",
     "cucumber": "npx cucumber-js && ts-node ./src/index.ts"
   },
@@ -34,6 +34,7 @@
   "dependencies": {
     "@cucumber/cucumber": "^12.2.0",
     "@types/express": "^5.0.5",
+    "playwright": "^1.57.0",
     "rimraf": "^6.1.2"
   }
 }

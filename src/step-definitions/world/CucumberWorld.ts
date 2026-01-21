@@ -6,7 +6,6 @@ export class CucumberWorld extends World {
     // Base URL for the application under test
     private baseUrl?: string;
 
-
     // Person who is executing the tests
     private firstName?: string;
     private lastName?: string;

@@ -30,17 +30,17 @@ test('simulate two users loggin at the same time', async () => {
 test("parallel test A", async ({ browser }) => {
   const context = await browser.newContext();
   const page = await context.newPage();
-  await page.goto("https://ebay.com/");
+  await page.goto("https://www.ebay.com/");
 });
 
 test("parallel test B", async ({ browser }) => {
   const context = await browser.newContext();
   const page = await context.newPage();
-  await page.goto("https://apple.com/");
+  await page.goto("https://www.apple.com/");
 });
 
 test.describe('group testing', {
-  tag: '@report',
+  tag: '@smoke',
 }, () => {
   test('test report header', async ({ page }) => {
     await page.goto('https://example.com');

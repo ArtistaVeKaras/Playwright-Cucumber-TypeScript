@@ -16,6 +16,7 @@ Given('I navigate to webdriveruniversity login page', async function (this: Cucu
     try {
         await pageFixture.page.goto(process.env.LOGIN_URL || loginUrl);
         logger.info(`Accessing the Login URL: ${process.env.LOGIN_URL || loginUrl}`);
+        logger.info(`Getting the Base URL from the setter method : ${this.getBaseUrl()}`);
         this.setBaseUrl(loginUrl);
     } catch (error) {
         logger.error('Error navigating to login page:', error);
@@ -24,7 +25,6 @@ Given('I navigate to webdriveruniversity login page', async function (this: Cucu
 
 // This scenario uses hardcoded valid credentials
 When('I type a valid username', async function (this: CucumberWorld) {
-    logger.info(`Base URL: ${this.getBaseUrl()}`);
     await pageFixture.page.getByRole('textbox', { name: 'Username' }).fill('webdriver');
 });
 
