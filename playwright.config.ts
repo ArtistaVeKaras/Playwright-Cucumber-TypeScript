@@ -44,6 +44,7 @@ export default defineConfig({
       use: { ...devices['Desktop Firefox'] },
     },
 
+    // TODO: Fix test failures in WebKit
     {
       name: 'webkit',
       use: { ...devices['Desktop Safari'] },

@@ -10,7 +10,7 @@ test('has title', async () => {
     await browser.close();
 });
 
-test('simulate two users loggin at the same time', async () => {
+test('simulate two users logging in at the same time', async () => {
     const browser = await chromium.launch();
 
     const user1 = await browser.newContext();

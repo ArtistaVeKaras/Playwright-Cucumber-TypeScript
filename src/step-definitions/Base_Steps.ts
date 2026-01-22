@@ -7,11 +7,11 @@ const env = loadEnv({ path: './env/.env' });
 
 // Create a configuration object for easy access to environment variables
 const config = {
-    browserHeight: parseInt(process.env.BROSER_HEIGHT || '1080', 10),
+    browserHeight: parseInt(process.env.BROWSER_HEIGHT || '1080', 10),
     browserWidth: parseInt(process.env.BROWSER_WIDTH || '1920', 10),
 };
 
-When('I switch to the broswer Tab', async () => {
+When('I switch to the browser Tab', async () => {
 
     // waitForEvent returns the new Page directly (safer than indexing)
     const newPage = await pageFixture.context.waitForEvent('page');

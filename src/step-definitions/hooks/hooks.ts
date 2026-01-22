@@ -10,13 +10,13 @@ const env = loadEnv({ path: './env/.env' });
 
 // Create a configuration object for easy access to environment variables
 const config = {
-    browser: env.parsed?.UI_AUTOMATION_BROSWER || 'chromium',
+    browser: env.parsed?.UI_AUTOMATION_BROWSER || 'chromium',
     headless: env.parsed?.UI_AUTOMATION_HEADLESS === 'true',
-    browserHeight: parseInt(process.env.BROSER_HEIGHT || '1080', 10),
+    browserHeight: parseInt(process.env.BROWSER_HEIGHT || '1080', 10),
     browserWidth: parseInt(process.env.BROWSER_WIDTH || '1920', 10),
 };
 
-// Createa a dictionay mapping browser names to Playwright browser types
+// Create a dictionary mapping browser names to Playwright browser types
 const browsers: { [key: string]: BrowserType } = {
     'chromium': chromium,
     'firefox:': firefox,
