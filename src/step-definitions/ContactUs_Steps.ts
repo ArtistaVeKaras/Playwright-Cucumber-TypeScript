@@ -4,21 +4,25 @@ import { expect } from "@playwright/test";
 import { faker } from '@faker-js/faker';
 import { CucumberWorld } from "./world/CucumberWorld";
 import logger from "../logger/logger";
-
 import dotenv from "dotenv";
-dotenv.config({ path: "./env/.env" });
+
+dotenv.config({ path: "./env/.env.local" });
 
 const contactUsUrl = 'https://www.webdriveruniversity.com/Contact-Us/contactus.html';
-// TODO: add URL from env variable if exists
 
 Given('I navigate to the contactUs homepage', async function (this: CucumberWorld) {
     try {
-        await pageFixture.page.goto(process.env.CONTACTUS_URL || contactUsUrl);
-        logger.info(`Accessing the contact us URL: ${process.env.CONTACTUS_URL || contactUsUrl}`);
+        // Log the URLs from the environment variables for debugging purposes
+        // The url variables are being read from the env/.env.local file
+        logger.info(process.env.CONTACT_US_URL);
+        logger.info(process.env.LOGIN_URL1);
+
+        await pageFixture.page.goto(process.env.CONTACT_US_URL || contactUsUrl);
+        logger.info(`Accessing the contact us URL: ${process.env.CONTACT_US_URL || contactUsUrl}`);
 
         // Store the base URL in the Cucumber World instance'
         this.setBaseUrl(contactUsUrl);
-        logger.info(`Getting the Base URL from the setter method : ${this.getBaseUrl()}`);
+        logger.info(`Getting the Base URL from the setter method: ${this.getBaseUrl()}`);
     }
     catch (error) {
         logger.error('Error navigating to contact us page:', error);
