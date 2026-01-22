@@ -13,8 +13,10 @@ const contactUsUrl = 'https://www.webdriveruniversity.com/Contact-Us/contactus.h
 
 Given('I navigate to the contactUs homepage', async function (this: CucumberWorld) {
     try {
-        await pageFixture.page.goto(process.env.CONTACTUS_URL || 'https://www.webdriveruniversity.com/Contact-Us/contactus.html');
-        logger.info(`Accessing the contact us URL: ${process.env.CONTACTUS_URL || 'https://www.webdriveruniversity.com/Contact-Us/contactus.html'}`);
+        await pageFixture.page.goto(process.env.CONTACTUS_URL || contactUsUrl);
+        logger.info(`Accessing the contact us URL: ${process.env.CONTACTUS_URL || contactUsUrl}`);
+
+        // Store the base URL in the Cucumber World instance'
         this.setBaseUrl(contactUsUrl);
         logger.info(`Getting the Base URL from the setter method : ${this.getBaseUrl()}`);
     }

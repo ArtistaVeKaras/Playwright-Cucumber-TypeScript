@@ -4,12 +4,12 @@ import dotenv from 'dotenv';
 import logger from '../logger/logger';
 import { CucumberWorld } from '../step-definitions/world/CucumberWorld';
 
-// Configure dotenv to load mutlitple env files
+// Configure dotenv to load multiple env files
 dotenv.config({ path : ['./env/.env', './env/.env.local'] });
 
 const url = 'https://www.webdriveruniversity.com/';
 
-Given('I navigate to webdriveruniversity hompepage', async function (this: CucumberWorld) {
+Given('I navigate to webdriveruniversity homepage', async function (this: CucumberWorld) {
     // Navigate to the homepage URL
     try {
     await pageFixture.page.goto(process.env.HOMEPAGE_URL || url);
