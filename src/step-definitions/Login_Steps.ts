@@ -9,15 +9,20 @@ dotenv.config({ path: './env/.env' });
 
 let alertMessage: string;
 
-const loginUrl = 'https://www.webdriveruniversity.com/Login-Portal/index.html?'
+const login_url = 'https://www.webdriveruniversity.com/Login-Portal/index.html?'
 
-// Navigates to the login page URL
-Given('I navigate to webdriveruniversity login page', async function (this: CucumberWorld) {
+Given('I navigate to webdriver university login page', async function (this: CucumberWorld) {
     try {
-        await pageFixture.page.goto(process.env.LOGIN_URL || loginUrl);
-        logger.info(`Accessing the Login URL: ${process.env.LOGIN_URL || loginUrl}`);
+        // Log the URLs from the environment variables for debugging purposes
+        logger.info('Login URL: ' + process.env.LOGIN_URL);
+
+        // Navigates to the login page URL
+        await pageFixture.page.goto(process.env.LOGIN_URL || login_url);
+        logger.info(`Accessing the Login URL: ${process.env.LOGIN_URL || login_url}`);
+        this.setBaseUrl(login_url);
+
+        // Log the base URL from the Cucumber World instance
         logger.info(`Getting the Base URL from the setter method : ${this.getBaseUrl()}`);
-        this.setBaseUrl(loginUrl);
     } catch (error) {
         logger.error('Error navigating to login page:', error);
     }
@@ -56,6 +61,6 @@ When('I type a password {string}', async (password: string) => {
     await pageFixture.page.getByRole('textbox', { name: 'Password' }).fill(password);
 });
 
-Then('I should be presented with a login message {string}', async (messag: string) => {
-    expect(alertMessage).toBe(messag);
+Then('I should be presented with a login message {string}', async (message: string) => {
+    expect(alertMessage).toBe(message);
 });

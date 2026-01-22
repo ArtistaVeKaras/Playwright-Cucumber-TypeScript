@@ -7,16 +7,19 @@ import { CucumberWorld } from '../step-definitions/world/CucumberWorld';
 // Configure dotenv to load multiple env files
 dotenv.config({ path : ['./env/.env', './env/.env.local'] });
 
-const url = 'https://www.webdriveruniversity.com/';
+const homepage_url = 'https://www.webdriveruniversity.com/';
 
-Given('I navigate to webdriveruniversity homepage', async function (this: CucumberWorld) {
-    // Navigate to the homepage URL
+Given('I navigate to webdriver university homepage', async function (this: CucumberWorld) {
     try {
-    await pageFixture.page.goto(process.env.HOMEPAGE_URL || url);
-    logger.info(`Navigated to URL: ${process.env.HOMEPAGE_URL || url}`);
-    logger.info(`Accessing the homepage URL:`,`${url}`);
+    // Log the URLs from the environment variables for debugging purposes
+    logger.info('Homepage URL: ' + process.env.HOMEPAGE_URL);
+
+    // Navigate to the homepage URL
+    await pageFixture.page.goto(process.env.HOMEPAGE_URL || homepage_url);
+    logger.info(`Navigating to URL: ${process.env.HOMEPAGE_URL || homepage_url}`);
+
     // Store the base URL in the Cucumber World instance'
-    this.setBaseUrl(url);
+    this.setBaseUrl(homepage_url);
     } catch (error) {
         logger.error('Error navigating to homepage:', error);
     }

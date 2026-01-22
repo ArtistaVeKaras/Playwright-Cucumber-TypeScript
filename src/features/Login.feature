@@ -1,9 +1,9 @@
 Feature: Login to Webdriver University Page
 
     Background: Navigate to the WebdriverUniversity
-        Given I navigate to webdriveruniversity login page
+        Given I navigate to webdriver university login page
 
-    # Harcoded valid login
+    # Hardcoded valid login
     @login
     Scenario: Valid Login Form submission
         And I type a valid username
