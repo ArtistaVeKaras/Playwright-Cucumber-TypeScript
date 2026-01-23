@@ -3,8 +3,8 @@ import { pageFixture } from './hooks/browserContextFixture';
 import { expect } from '@playwright/test';
 import { CucumberWorld } from '../step-definitions/world/CucumberWorld';
 import logger from '../logger/logger';
-
 import dotenv from 'dotenv';
+
 dotenv.config({ path: './env/.env' });
 
 let alertMessage: string;
