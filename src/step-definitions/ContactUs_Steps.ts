@@ -21,6 +21,7 @@ Given('I navigate to the contactUs homepage', async function (this: CucumberWorl
         logger.info(`Accessing the contact us URL: ${process.env.CONTACT_US_URL || contactUsUrl}`);
 
         // Store the base URL in the Cucumber World instance'
+        // Extract the URL for debugging purposes
         this.setBaseUrl(contactUsUrl);
         logger.info(`Getting the Base URL from the setter method: ${this.getBaseUrl()}`);
     }
@@ -31,29 +32,30 @@ Given('I navigate to the contactUs homepage', async function (this: CucumberWorl
 
 // This scenario uses hardcoded valid contact us form data
 When('I type a valid first name', async () => {
-    await pageFixture.page.getByPlaceholder('First Name').fill('John');
+    const firstNameField = pageFixture.page.getByPlaceholder('First Name');
+    await firstNameField.fill('Tommy');
 });
 
 // This scenario uses hardcoded valid contact us form data
 When('I type a valid last name', async () => {
-    const lastNameField = await pageFixture.page.getByPlaceholder('Last Name');
-    await lastNameField.fill('Doe');
+    const lastNameField = pageFixture.page.getByPlaceholder('Last Name');
+    await lastNameField.fill('Kurosawa');
 });
 
 // This scenario uses hardcoded valid contact us form data
 When('I type a valid email address', async () => {
-    const emailField = await pageFixture.page.getByPlaceholder('Email Address');
+    const emailField = pageFixture.page.getByPlaceholder('Email Address');
     await emailField.fill('d6E0r@example.com');
 });
 
 // This scenario uses hardcoded valid contact us form data
 When('I type a comment into the comment text area', async () => {
-    const commentField = await pageFixture.page.getByPlaceholder('Comments');
+    const commentField = pageFixture.page.getByPlaceholder('Comments');
     await commentField.fill('This is a test comment for the contact us form.');
 });
 
 When('I click on the submit button', async () => {
-    const submitButton = await pageFixture.page.getByRole('button', { name: 'SUBMIT' });
+    const submitButton = pageFixture.page.getByRole('button', { name: 'SUBMIT' });
     await submitButton.click();
 });
 
@@ -78,23 +80,20 @@ Then('I should be presented with a unsuccessful contact us submission message', 
     await expect(messageText).toMatch(/Error: all fields are required|Invalid email address/);
 });
 
+// This scenario uses parameterized data from the cucumber feature file
 When('I type a Specific first name {string}', async (firstName: string) => {
-    // Write code here that turns the phrase above into concrete actions
     await pageFixture.page.getByPlaceholder('First Name').fill(firstName);
 });
 
 When('I type a Specific last name {string}', async (lastName: string) => {
-    // Write code here that turns the phrase above into concrete actions
     await pageFixture.page.getByPlaceholder('Last Name').fill(lastName);
 });
 
 When('I type a Specific email address {string}', async (emailAddress: string) => {
-    // Write code here that turns the phrase above into concrete actions
     await pageFixture.page.getByPlaceholder('Email Address').fill(emailAddress);
 });
 
 When('I type a Specific text {string} and a number {int} within the comment input field', async (comment: string, number: number) => {
-    // Write code here that turns the phrase above into the comment text area {string} with a specific number of {string}', async(comment: string, number: number) => {
     await pageFixture.page.getByPlaceholder('Comments').fill(`${comment} ${number}`);
 });
 

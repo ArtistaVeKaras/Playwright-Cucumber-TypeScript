@@ -2,12 +2,12 @@
 Feature: WebdriverUniversity.com - Contact us Page
 
     Background: Navigate to the WebdriverUniversity
-        Given I navigate to webdriver university homepage
-        When I click on the Contact Us button
-        And I switch to the browser Tab
+        # Given I navigate to webdriver university homepage
+        # When I click on the Contact Us button
+        # And I switch to the browser Tab
 
-    # Background: Navigate to the contact us page
-        # Given I navigate to the contactUs homepage
+    Background: Navigate to the contact us page
+        Given I navigate to the contactUs homepage
     @regression
     Scenario: Valid Contact Us Form submission
         And I type a valid first name
