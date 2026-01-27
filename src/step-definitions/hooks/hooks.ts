@@ -42,7 +42,9 @@ async function initializePage(): Promise<void> {
         ignoreHTTPSErrors: true,
     });
     pageFixture.page = await pageFixture.context.newPage();
-    await setGlobalTimeouts(pageFixture.page); // This line sets the global timeouts configured in the playwright-timeouts.ts
+
+    // This line sets the global timeouts configured in the playwright-timeouts.ts
+    setGlobalTimeouts(pageFixture.page); 
     await pageFixture.page.setViewportSize({
         width: config.browserWidth,
         height: config.browserHeight,

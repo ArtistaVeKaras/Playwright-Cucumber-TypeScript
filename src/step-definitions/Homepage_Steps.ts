@@ -16,7 +16,7 @@ Given('I navigate to webdriver university homepage', async function (this: Cucum
 
     // Navigate to the homepage URL
     await pageFixture.page.goto(process.env.HOMEPAGE_URL || homepage_url);
-    logger.info(`Navigating to URL: ${process.env.HOMEPAGE_URL || homepage_url}`);
+    logger.info(`Accessing the homepage to URL: ${process.env.HOMEPAGE_URL || homepage_url}`);
 
     // Store the base URL in the Cucumber World instance'
     this.setBaseUrl(homepage_url);
@@ -26,13 +26,13 @@ Given('I navigate to webdriver university homepage', async function (this: Cucum
 });
 
 When('I click on the Contact Us button', async () => {
-    const contactUsButton = await pageFixture.page.getByRole('link', { name: 'CONTACT US Contact Us Form' });
+    const contactUsButton = pageFixture.page.getByRole('link', { name: 'CONTACT US Contact Us Form' });
     await contactUsButton.click();
     logger
 });
 
 When('I click on the Login Portal button', async () => {
-    const loginButton = await pageFixture.page.getByText('LOGIN PORTAL', { exact: true })
+    const loginButton = pageFixture.page.getByText('LOGIN PORTAL', { exact: true })
     await loginButton.click();
     logger.info('Clicked on the Login Portal button');
 });
