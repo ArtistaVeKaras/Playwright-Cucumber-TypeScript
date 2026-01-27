@@ -77,7 +77,7 @@ Then('I should be presented with a unsuccessful contact us submission message', 
     const messageText = await pageFixture.page.textContent('//body');
 
     // Assert that the success message contains the expected text
-    await expect(messageText).toMatch(/Error: all fields are required|Invalid email address/);
+    expect(messageText).toMatch(/Error: all fields are required|Invalid email address/);
 });
 
 // This scenario uses parameterized data from the cucumber feature file
@@ -97,7 +97,8 @@ When('I type a Specific text {string} and a number {int} within the comment inpu
     await pageFixture.page.getByPlaceholder('Comments').fill(`${comment} ${number}`);
 });
 
-// This scenario uses parameterized credentials with faker and cucumberWorld
+// This scenario uses parameterized credentials with faker  dependencies 
+// and the cucumberWorld to store generated data
 When('I type a random first name', async function (this: CucumberWorld) {
     const randomFirstName = faker.person.firstName();
     this.setFirstName(randomFirstName);

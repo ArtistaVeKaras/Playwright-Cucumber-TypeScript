@@ -19,7 +19,7 @@ const config = {
 // Create a dictionary mapping browser names to Playwright browser types
 const browsers: { [key: string]: BrowserType } = {
     'chromium': chromium,
-    'firefox:': firefox,
+    'firefox': firefox,
     'webkit': webkit,
 };
 
