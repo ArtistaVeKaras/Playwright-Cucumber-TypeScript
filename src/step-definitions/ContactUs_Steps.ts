@@ -5,6 +5,7 @@ import { faker } from '@faker-js/faker';
 import { CucumberWorld } from "./world/CucumberWorld";
 import logger from "../logger/logger";
 import dotenv from "dotenv";
+import { BasePage } from "../page-objects/base/BasePage";
 
 dotenv.config({ path: "./env/.env.local" });
 
@@ -12,12 +13,15 @@ const contactUsUrl = 'https://www.webdriveruniversity.com/Contact-Us/contactus.h
 
 Given('I navigate to the contactUs homepage', async function (this: CucumberWorld) {
     try {
+
+        const basePage = new BasePage();
+
         // Log the URLs from the environment variables for debugging purposes
         // The url variables are being read from the env/.env.local file
         logger.info(process.env.CONTACT_US_URL);
-        logger.info(process.env.LOGIN_URL1);
+        logger.info(process.env.EBAY_URL);
 
-        await pageFixture.page.goto(process.env.CONTACT_US_URL || contactUsUrl);
+        await basePage.navigateTo(process.env.CONTACT_US_URL || contactUsUrl);
         logger.info(`Accessing the Contact Us URL page: ${process.env.CONTACT_US_URL || contactUsUrl}`);
 
         // Store the base URL in the Cucumber World instance'
@@ -123,7 +127,7 @@ When('I type a random comment into the comment text area', async function (this:
         \n Please contact me on:\n  ${this.getFirstName()} \n ${this.getLastName()} \n ${this.getEmail()}`);
 });
 
-When('I type a firstName {word} and a lastName {word}', async (firstName: string, lastName: string) => {
+When('I type a first Name {word} and a last Name {word}', async (firstName: string, lastName: string) => {
     await pageFixture.page.getByPlaceholder('First Name').fill(firstName);
     await pageFixture.page.getByPlaceholder('Last Name').fill(lastName);
 });
