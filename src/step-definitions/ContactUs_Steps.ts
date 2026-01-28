@@ -18,7 +18,7 @@ Given('I navigate to the contactUs homepage', async function (this: CucumberWorl
         logger.info(process.env.LOGIN_URL1);
 
         await pageFixture.page.goto(process.env.CONTACT_US_URL || contactUsUrl);
-        logger.info(`Accessing the contact us URL: ${process.env.CONTACT_US_URL || contactUsUrl}`);
+        logger.info(`Accessing the Contact Us URL page: ${process.env.CONTACT_US_URL || contactUsUrl}`);
 
         // Store the base URL in the Cucumber World instance'
         // Extract the URL for debugging purposes

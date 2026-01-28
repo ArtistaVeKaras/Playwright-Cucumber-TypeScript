@@ -2,7 +2,7 @@ import { exec } from 'child_process';
 import dotenv from 'dotenv';
 dotenv.config({ path : './env/.env' });
 
-// Settint rety attempt frome env variable
+// Setting retry attempt from env variable or default to 0
 const retryAttempts = process.env.RETRY_ATTEMPTS || '0';
 const parallelTests = process.env.PARALLEL_TESTS || '1';
 
@@ -23,7 +23,7 @@ interface ProfilesCommands {
     [key: string]: string;
 }
 
-// Define a command strigns for different test profiles
+// Define a command string for different test profiles
 const profiles: ProfilesCommands = {
     smoke: `${common} --tags "@smoke"`,
     regression: `${common} --tags "@regression"`,

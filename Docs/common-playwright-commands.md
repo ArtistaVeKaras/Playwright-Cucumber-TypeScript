@@ -23,3 +23,9 @@ npx playwright test tests/example-1.spec.ts
 ```bash
 npx playwright test --headed --trace on
 ```
+
+## Run cucumber test with the index file by adding a specific flag e.g regression
+
+```bash
+npm run cucumber regression
+```
