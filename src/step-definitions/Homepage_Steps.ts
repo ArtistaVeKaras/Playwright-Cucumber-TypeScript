@@ -15,8 +15,8 @@ Given('I navigate to webdriver university homepage', async function (this: Cucum
     logger.info('Homepage URL: ' + process.env.HOMEPAGE_URL);
 
     // Navigate to the homepage URL
-    await pageFixture.page.goto(process.env.HOMEPAGE_URL || homepage_url);
-    logger.info(`Accessing the homepage to URL: ${process.env.HOMEPAGE_URL || homepage_url}`);
+    await this.basePage.navigateTo(process.env.HOMEPAGE_URL || homepage_url);
+    logger.info(`Accessing the homepage URL: ${process.env.HOMEPAGE_URL || homepage_url}`);
 
     // Store the base URL in the Cucumber World instance'
     this.setBaseUrl(homepage_url);
@@ -25,15 +25,12 @@ Given('I navigate to webdriver university homepage', async function (this: Cucum
     }
 });
 
-When('I click on the Contact Us button', async () => {
-    const contactUsButton = pageFixture.page.getByRole('link', { name: 'CONTACT US Contact Us Form' });
-    await contactUsButton.click();
-    logger
-});
+When('I click on the Contact Us button', async function (this: CucumberWorld) {
+    this.basePage.waitAndClickByRole('link', 'CONTACT US Contact Us Form');
+    logger.info('Clicked on the Contact Us button');});
 
-When('I click on the Login Portal button', async () => {
-    const loginButton = pageFixture.page.getByText('LOGIN PORTAL', { exact: true })
-    await loginButton.click();
+When('I click on the Login Portal button', async function (this: CucumberWorld) {
+    this.basePage.waitAndClickByRole('link', 'LOGIN PORTAL');
     logger.info('Clicked on the Login Portal button');
 });
 

@@ -5,7 +5,6 @@ import { faker } from '@faker-js/faker';
 import { CucumberWorld } from "./world/CucumberWorld";
 import logger from "../logger/logger";
 import dotenv from "dotenv";
-import { BasePage } from "../page-objects/base/BasePage";
 
 dotenv.config({ path: "./env/.env.local" });
 
@@ -14,14 +13,12 @@ const contactUsUrl = 'https://www.webdriveruniversity.com/Contact-Us/contactus.h
 Given('I navigate to the contactUs homepage', async function (this: CucumberWorld) {
     try {
 
-        const basePage = new BasePage();
-
         // Log the URLs from the environment variables for debugging purposes
         // The url variables are being read from the env/.env.local file
         logger.info(process.env.CONTACT_US_URL);
         logger.info(process.env.EBAY_URL);
 
-        await basePage.navigateTo(process.env.CONTACT_US_URL || contactUsUrl);
+        await this.basePage.navigateTo(process.env.CONTACT_US_URL || contactUsUrl);
         logger.info(`Accessing the Contact Us URL page: ${process.env.CONTACT_US_URL || contactUsUrl}`);
 
         // Store the base URL in the Cucumber World instance'

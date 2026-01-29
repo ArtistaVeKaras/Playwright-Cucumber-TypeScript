@@ -1,6 +1,11 @@
-import { World, setWorldConstructor } from "@cucumber/cucumber";
+import { World, setWorldConstructor, IWorldOptions} from "@cucumber/cucumber";
+import { PageManager } from "../../page-objects/base/PageManager";
+import { BasePage } from "../../page-objects/base/BasePage";
 
 export class CucumberWorld extends World {
+    public pageManager: PageManager;
+    public basePage: BasePage;
+
     // You can add custom properties or methods here if needed
     // For example, you might want to store some state between steps
 
@@ -11,6 +16,15 @@ export class CucumberWorld extends World {
     private firstName?: string;
     private lastName?: string;
     private email?: string;
+
+    // { attach, log, parameters } are provided by Cucumber framework. IWorldOptions are required in the 
+    // constructor of the custom World class to inherit from the Cucumber World base class
+    // and to initialize your PageManager and BasePage instances properly.
+    constructor({ attach, log, parameters, link }: IWorldOptions) {
+        super({ attach, log, parameters, link });
+        this.pageManager = new PageManager();
+        this.basePage = this.pageManager.createBasePage();
+    }
 
     // Setters for the baseUrl
     setBaseUrl(baseUrl: string) {

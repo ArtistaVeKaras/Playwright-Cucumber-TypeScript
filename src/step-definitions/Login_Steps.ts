@@ -17,7 +17,7 @@ Given('I navigate to webdriver university login page', async function (this: Cuc
         logger.info('Login URL: ' + process.env.LOGIN_URL);
 
         // Navigates to the login page URL
-        await pageFixture.page.goto(process.env.LOGIN_URL || login_url);
+        await this.basePage.navigateTo(process.env.LOGIN_URL || login_url);
         logger.info(`Accessing the Login URL: ${process.env.LOGIN_URL || login_url}`);
         this.setBaseUrl(login_url);
 

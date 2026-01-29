@@ -4,7 +4,7 @@ Feature: Login to Webdriver University Page
         Given I navigate to webdriver university login page
 
     # Hardcoded valid login
-    @login
+    # @login
     Scenario: Valid Login Form submission
         And I type a valid username
         And I type a valid password
@@ -12,7 +12,7 @@ Feature: Login to Webdriver University Page
         Then I should be presented with a successful login message
 
     # Parameterized login
-    # @login
+    @login
     Scenario Outline: Valid and Invalid login
         And I type a username '<username>'
         And I type a password '<password>'
