@@ -3,6 +3,7 @@ import { Browser, BrowserType, chromium, firefox, webkit } from "playwright";
 import { pageFixture } from "./browserContextFixture";
 import { setGlobalTimeouts } from "../../utils/playwright-timeouts";
 import logger from '../../logger/logger';
+import { PageManager } from "../../page-objects/base/PageManager";
 
 // Load environment variables from .env file
 import { config as loadEnv } from 'dotenv';
@@ -69,6 +70,10 @@ Before(async function () {
         logger.info("Launching browser before each scenario");
         browserInstance = await initializeBrowserContext(config.browser);
         await initializePage();
+
+        // Create a PageManager and a BasePage instance for managing page objects before each scenario gets executed
+        this.pageManager = new PageManager();
+        this.basePage = this.pageManager.createBasePage();
     } catch (error) {
         logger.error("Error during browser initialization:", error);
         throw error; // Rethrow to fail the scenario if initialization fails

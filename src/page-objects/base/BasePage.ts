@@ -11,19 +11,22 @@ export class BasePage {
         await this.page.goto(url);
     }
 
-    // Wait and click by role and name
-    public async waitAndClick(role: string, name: string): Promise<void> {
+    // Wait for role to be visible and then click
+    public async waitAndClickByRole(role: string, name: string): Promise<void> {
         const element = this.page.getByRole(role as any, { name });
         await element.click();
     }
 
-    // Wait and click by locator
-    public async waitAndClickByLocator(locator: Locator): Promise<void> {
+    // Wait for locator to be visible and then click
+    public async waitAndClickForSelector(locator: Locator): Promise<void> {
+        await locator.isVisible();
         await locator.click();
     }
 
-    // Wait for element to be visible
-    public async waitForVisibility(locator: Locator): Promise<void> {
-        await locator.waitFor({ state: 'visible' });
+    // Wait for selector to be visible and then click
+    public async waitAndClickBySelector(selector: string): Promise<void> {
+        await this.page.waitForSelector(selector);
+        await this.page.click(selector);
     }
+
 }
