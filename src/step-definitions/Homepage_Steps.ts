@@ -1,5 +1,4 @@
 import { Given, When} from '@cucumber/cucumber';
-import { pageFixture } from './hooks/browserContextFixture';
 import dotenv from 'dotenv';
 import logger from '../logger/logger';
 import { CucumberWorld } from '../step-definitions/world/CucumberWorld';
@@ -26,11 +25,11 @@ Given('I navigate to webdriver university homepage', async function (this: Cucum
 });
 
 When('I click on the Contact Us button', async function (this: CucumberWorld) {
-    this.basePage.waitAndClickByRole('link', 'CONTACT US Contact Us Form');
+    this.homePage?.clickContactUsForm();
     logger.info('Clicked on the Contact Us button');});
 
 When('I click on the Login Portal button', async function (this: CucumberWorld) {
-    this.basePage.waitAndClickByRole('link', 'LOGIN PORTAL');
+    this.homePage?.clickLoginPortal();
     logger.info('Clicked on the Login Portal button');
 });
 

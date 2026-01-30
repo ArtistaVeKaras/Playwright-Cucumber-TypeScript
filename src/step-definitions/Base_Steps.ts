@@ -3,7 +3,7 @@ import { pageFixture } from './hooks/browserContextFixture';
 import { CucumberWorld } from './world/CucumberWorld';
 
 When('I switch to the browser Tab', async function(this: CucumberWorld) {
-    this.basePage.switchToNewTab();
+    await this.basePage.switchToNewTab();
 
 });
 

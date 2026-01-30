@@ -74,6 +74,8 @@ Before(async function () {
         // Create a PageManager and a BasePage instance for managing page objects before each scenario gets executed
         this.pageManager = new PageManager();
         this.basePage = this.pageManager.createBasePage();
+        this.homePage = this.pageManager.createHomePage();
+        this.contactUsPage = this.pageManager.createContactUsPage();
     } catch (error) {
         logger.error("Error during browser initialization:", error);
         throw error; // Rethrow to fail the scenario if initialization fails

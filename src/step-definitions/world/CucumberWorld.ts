@@ -1,10 +1,14 @@
 import { World, setWorldConstructor, IWorldOptions} from "@cucumber/cucumber";
 import { PageManager } from "../../page-objects/base/PageManager";
 import { BasePage } from "../../page-objects/base/BasePage";
+import { HomePage } from "../../page-objects/HomePage";
+import { ContactUsPage } from "../../page-objects/ContactUsPage";
 
 export class CucumberWorld extends World {
     public pageManager: PageManager;
     public basePage: BasePage;
+    public homePage?: HomePage;
+    public contactUsPage?: ContactUsPage;
 
     // You can add custom properties or methods here if needed
     // For example, you might want to store some state between steps
@@ -24,6 +28,8 @@ export class CucumberWorld extends World {
         super({ attach, log, parameters, link });
         this.pageManager = new PageManager();
         this.basePage = this.pageManager.createBasePage();
+        this.homePage = this.pageManager.createHomePage();
+        this.contactUsPage = this.pageManager.createContactUsPage();
     }
 
     // Setters for the baseUrl
