@@ -1,5 +1,16 @@
-import { Page, Locator} from '@playwright/test';
+import { Page, Locator } from '@playwright/test';
 import { pageFixture } from '../../step-definitions/hooks/browserContextFixture';
+import { config as loadEnv } from 'dotenv';
+
+// Load environment variables from .env file
+const env = loadEnv({ path: './env/.env' });
+
+// Create a configuration object for easy access to environment variables
+const config = {
+    browserHeight: parseInt(process.env.BROWSER_HEIGHT || '1080', 10),
+    browserWidth: parseInt(process.env.BROWSER_WIDTH || '1920', 10),
+};
+
 
 export class BasePage {
     get page(): Page {
@@ -18,7 +29,7 @@ export class BasePage {
     }
 
     // Wait for locator to be visible and then click
-    public async waitAndClickForSelector(locator: Locator): Promise<void> {
+    public async waitAndClickForSLocator(locator: Locator): Promise<void> {
         await locator.isVisible();
         await locator.click();
     }
@@ -29,4 +40,12 @@ export class BasePage {
         await this.page.click(selector);
     }
 
+    public async switchToNewTab(): Promise<void> {
+        
+        // waitForEvent returns the new Page directly (safer than indexing)
+        const newPage = await this.page.context().waitForEvent('page'); // waitForEvent returns the new Page directly (safer than indexing) const newPage = await pageFixture.context.waitForEvent('page');
+        pageFixture.page = newPage; // now definitely a Page
+        await pageFixture.page.bringToFront();
+        await pageFixture.page.setViewportSize({width: config.browserWidth, height: config.browserHeight});
+    }
 }
