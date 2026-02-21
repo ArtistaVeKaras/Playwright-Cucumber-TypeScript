@@ -7,8 +7,8 @@ import { ContactUsPage } from "../../page-objects/ContactUsPage";
 export class CucumberWorld extends World {
     public pageManager: PageManager;
     public basePage: BasePage;
-    public homePage?: HomePage;
-    public contactUsPage?: ContactUsPage;
+    public homePage: HomePage;
+    public contactUsPage: ContactUsPage;
 
     // You can add custom properties or methods here if needed
     // For example, you might want to store some state between steps

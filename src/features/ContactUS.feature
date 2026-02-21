@@ -18,6 +18,7 @@ Feature: WebdriverUniversity.com - Contact us Page
         And I click on the submit button
         Then I should be presented with a successful contact us submission message
 
+    # @regression
     Scenario: Valid Contact Us Form submission - Using Specific Data
         And I type a Specific first name "John"
         And I type a Specific last name "Doe"

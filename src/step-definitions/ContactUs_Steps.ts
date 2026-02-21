@@ -32,13 +32,12 @@ Given('I navigate to the contactUs homepage', async function (this: CucumberWorl
 });
 
 // This scenario uses hardcoded valid contact us form data
-When('I type a valid first name', async () => {
-    const firstNameField = pageFixture.page.getByPlaceholder('First Name');
-    await firstNameField.fill('Tommy');
+When('I type a valid first name', async function (this: CucumberWorld) {
+    this.contactUsPage.fillFirstName('Akira');
 });
 
 // This scenario uses hardcoded valid contact us form data
-When('I type a valid last name', async () => {
+When('I type a valid last name', async function (this: CucumberWorld) {
     const lastNameField = pageFixture.page.getByPlaceholder('Last Name');
     await lastNameField.fill('Kurosawa');
 });
