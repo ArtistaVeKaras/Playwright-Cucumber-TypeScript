@@ -1,7 +1,7 @@
 import { Given, When, Then } from "@cucumber/cucumber";
 import { pageFixture } from "./hooks/browserContextFixture";
 import { expect } from "@playwright/test";
-import { faker } from '@faker-js/faker';
+import { faker, th } from '@faker-js/faker';
 import { CucumberWorld } from "./world/CucumberWorld";
 import logger from "../logger/logger";
 import dotenv from "dotenv";
@@ -33,30 +33,26 @@ Given('I navigate to the contactUs homepage', async function (this: CucumberWorl
 
 // This scenario uses hardcoded valid contact us form data
 When('I type a valid first name', async function (this: CucumberWorld) {
-    this.contactUsPage.fillFirstName('Akira');
+    await this.contactUsPage.fillFirstName('Franklin');
 });
 
 // This scenario uses hardcoded valid contact us form data
 When('I type a valid last name', async function (this: CucumberWorld) {
-    const lastNameField = pageFixture.page.getByPlaceholder('Last Name');
-    await lastNameField.fill('Kurosawa');
+    await this.contactUsPage.fillLastName('Kurosawa');
 });
 
 // This scenario uses hardcoded valid contact us form data
-When('I type a valid email address', async () => {
-    const emailField = pageFixture.page.getByPlaceholder('Email Address');
-    await emailField.fill('d6E0r@example.com');
+When('I type a valid email address', async function (this: CucumberWorld) {
+     await this.contactUsPage.fillEmail('d6E0r@example.com');
 });
 
 // This scenario uses hardcoded valid contact us form data
-When('I type a comment into the comment text area', async () => {
-    const commentField = pageFixture.page.getByPlaceholder('Comments');
-    await commentField.fill('This is a test comment for the contact us form.');
+When('I type a comment into the comment text area', async function (this: CucumberWorld) {
+    await this.contactUsPage.fillMessage('This is a test comment for the contact us form.');
 });
 
-When('I click on the submit button', async () => {
-    const submitButton = pageFixture.page.getByRole('button', { name: 'SUBMIT' });
-    await submitButton.click();
+When('I click on the submit button', async function (this: CucumberWorld) {
+    await this.contactUsPage.clickSubmitForm();
 });
 
 Then('I should be presented with a successful contact us submission message', async () => {

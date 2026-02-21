@@ -14,7 +14,7 @@ export class ContactUsPage extends BasePage {
         await this.page.getByPlaceholder('Email').fill(email);
     }
     public async fillMessage(message: string): Promise<void> {
-        await this.page.getByPlaceholder('Message').fill(message);
+        await this.page.getByPlaceholder('Comments').fill(message);
     }
 
     public async clickSubmitForm(): Promise<void> {
