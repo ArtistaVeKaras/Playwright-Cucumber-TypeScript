@@ -41,11 +41,30 @@ export class BasePage {
     }
 
     public async switchToNewTab(): Promise<void> {
-        
         // waitForEvent returns the new Page directly (safer than indexing)
         const newPage = await this.page.context().waitForEvent('page'); // waitForEvent returns the new Page directly (safer than indexing) const newPage = await pageFixture.context.waitForEvent('page');
         pageFixture.page = newPage; // now definitely a Page
         await pageFixture.page.bringToFront();
-        await pageFixture.page.setViewportSize({width: config.browserWidth, height: config.browserHeight});
+        await pageFixture.page.setViewportSize({ width: config.browserWidth, height: config.browserHeight });
+    }
+
+    // This method is an alternative to the switchToNewTab method, it waits for a new page event and then retrieves all open pages to ensure it gets the correct new tab, 
+    // which can be more reliable in certain scenarios where multiple tabs might be opened.
+    public async switchToNewTabAlternativeMethod(): Promise<void> {
+        // this is the method implemented by Bruno tutor
+        await this.page.context().waitForEvent("page");
+
+        // Retrieve all current open pages/tabs 
+        const allPages = await this.page.context().pages();
+
+        // Assign the most recent tab to the page fixture (the new tab should be the last one in the array)
+        pageFixture.page = allPages[allPages.length - 1] as Page;
+
+        // Bring the new page to the front (focus)
+        await pageFixture.page.bringToFront();
+
+        // Set the viewport size for the new page
+        await pageFixture.page.setViewportSize({ width: config.browserWidth, height: config.browserHeight });
+
     }
 }

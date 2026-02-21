@@ -5,7 +5,7 @@ import logger from '../logger/logger';
 
 When('I switch to the browser Tab', async function(this: CucumberWorld) {
     logger.info('Switching to the new browser tab');
-    await this.basePage.switchToNewTab();
+    await this.basePage.switchToNewTabAlternativeMethod();
 
 });
 
