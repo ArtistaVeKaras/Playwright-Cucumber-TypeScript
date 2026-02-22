@@ -14,7 +14,7 @@ Given('I navigate to webdriver university homepage', async function (this: Cucum
     logger.info('Homepage URL: ' + process.env.HOMEPAGE_URL);
 
     // Navigate to the homepage URL
-    await this.basePage.navigateTo(process.env.HOMEPAGE_URL || homepage_url);
+    await this.homePage.navigateTo(process.env.HOMEPAGE_URL || homepage_url);
     logger.info(`Accessing the homepage URL: ${process.env.HOMEPAGE_URL || homepage_url}`);
 
     // Store the base URL in the Cucumber World instance'

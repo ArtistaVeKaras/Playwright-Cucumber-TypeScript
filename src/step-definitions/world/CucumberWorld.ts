@@ -21,9 +21,11 @@ export class CucumberWorld extends World {
     private lastName?: string;
     private email?: string;
 
-    // { attach, log, parameters } are provided by Cucumber framework. IWorldOptions are required in the 
-    // constructor of the custom World class to inherit from the Cucumber World base class
-    // and to initialize your PageManager and BasePage instances properly.
+    /** 
+     *  { attach, log, parameters } are provided by Cucumber framework. IWorldOptions are required in the 
+    *   constructor of the custom World class to inherit from the Cucumber World base class
+    *   and to initialize your PageManager and BasePage instances properly.
+    */
     constructor({ attach, log, parameters, link }: IWorldOptions) {
         super({ attach, log, parameters, link });
         this.pageManager = new PageManager();

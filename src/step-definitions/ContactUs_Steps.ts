@@ -18,7 +18,7 @@ Given('I navigate to the contactUs homepage', async function (this: CucumberWorl
         logger.info(process.env.CONTACT_US_URL);
         logger.info(process.env.EBAY_URL);
 
-        await this.basePage.navigateTo(process.env.CONTACT_US_URL || contactUsUrl);
+        await this.contactUsPage.navigateTo(process.env.CONTACT_US_URL || contactUsUrl);
         logger.info(`Accessing the Contact Us URL page: ${process.env.CONTACT_US_URL || contactUsUrl}`);
 
         // Store the base URL in the Cucumber World instance'
@@ -55,25 +55,14 @@ When('I click on the submit button', async function (this: CucumberWorld) {
     await this.contactUsPage.clickSubmitForm();
 });
 
-Then('I should be presented with a successful contact us submission message', async () => {
-    await pageFixture.page.waitForSelector('#contact_reply h1', { timeout: 5000 });
-
-    // Get the text content of the success message
-    const messageText = await pageFixture.page.innerText('#contact_reply h1');
-
-    // Assert that the success message contains the expected text
-    expect(messageText).toBe('Thank You for your Message!');
+Then('I should be presented with a successful contact us submission message', async function (this: CucumberWorld) {
+    expect(await this.contactUsPage.getSuccessMessage()).toBe('Thank You for your Message!');
 });
 
 
-Then('I should be presented with a unsuccessful contact us submission message', async () => {
-    await pageFixture.page.locator('//body');
-
-    // Get the text content of the success message
-    const messageText = await pageFixture.page.textContent('//body');
-
-    // Assert that the success message contains the expected text
-    expect(messageText).toMatch(/Error: all fields are required|Invalid email address/);
+Then('I should be presented with a unsuccessful contact us submission message', async function (this: CucumberWorld) {
+    // Assert that the error message contains the expected text
+    expect(await this.contactUsPage.getErrorMessage()).toMatch(/Error: all fields are required|Invalid email address/);
 });
 
 // This scenario uses parameterized data from the cucumber feature file
@@ -129,24 +118,9 @@ When('I type a email address {string} and a comment {string}', async (emailAddre
     await pageFixture.page.getByPlaceholder('Comments').fill(comment);
 });
 
-Then('I should be presented with a header text {string}', async (text: string) => {
-    await pageFixture.page.waitForSelector('//h1 | //body', { state: 'visible' });
-
-    // get all elements that match the locator
-    const elements = await pageFixture.page.locator('//h1 | //body').elementHandles();
-    let foundElementText = '';
-
-    // loop through each element and get its text content
-    for (let element of elements) {
-        // get the inner text of the element
-        let elementText = await element.innerText();
-
-        if (elementText.includes(text)) {
-            foundElementText = elementText;
-            break;
-        }
-    }
+Then('I should be presented with a header text {string}', async function (this: CucumberWorld, text: string) {
+  
     // assert that the text content of the element includes the expected text
-    expect(foundElementText).toContain(text);
+    expect(await this.contactUsPage.getHeaderTExt(text)).toContain(text);
 
 });
