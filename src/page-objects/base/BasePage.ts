@@ -17,7 +17,8 @@ export class BasePage {
         return pageFixture.page;
     }
 
-    // Promise<void> in TypeScript indicated that this method performs an asynchronous operation and does not return any value
+    // Promise<void> in TypeScript indicated that this method performs an asynchronous 
+    // operation and does not return any value
     public async navigateTo(url: string): Promise<void> {
         await this.page.goto(url);
     }
@@ -40,18 +41,21 @@ export class BasePage {
         await this.page.click(selector);
     }
 
+    // switchToNewTab method waits for a new page event, retrieves the new page directly from the event,
+    // and then brings it to the front and sets the viewport size. This method is more straightforward and 
+    // can be more reliable in scenarios where multiple tabs might be opened, as it directly captures the new page from the event.
     public async switchToNewTab(): Promise<void> {
-        // waitForEvent returns the new Page directly (safer than indexing)
         const newPage = await this.page.context().waitForEvent('page'); // waitForEvent returns the new Page directly (safer than indexing) const newPage = await pageFixture.context.waitForEvent('page');
         pageFixture.page = newPage; // now definitely a Page
         await pageFixture.page.bringToFront();
         await pageFixture.page.setViewportSize({ width: config.browserWidth, height: config.browserHeight });
     }
 
-    // This method is an alternative to the switchToNewTab method, it waits for a new page event and then retrieves all open pages to ensure it gets the correct new tab, 
+    // This method is an alternative to the switchToNewTab method, it waits for a new page event and then 
+    // retrieves all open pages to ensure it gets the correct new tab, 
     // which can be more reliable in certain scenarios where multiple tabs might be opened.
+    // this is the method implemented by Bruno tutor
     public async switchToNewTabAlternativeMethod(): Promise<void> {
-        // this is the method implemented by Bruno tutor
         await this.page.context().waitForEvent("page");
 
         // Retrieve all current open pages/tabs 
