@@ -56,7 +56,7 @@ console.log(`Hello, my name is ${firstName} and I am ${age} years old.`);
 // }
 
 // 4. Classes - TypeScript allows you to define classes, which are similar to JavaScript classes 
-// but provide additional features such as access modifiers, constructors, and interfaces.
+// but provide additional features such as access modifiers, constructors, and interfaces. Another Line break here!
 
 // JavaScript
 // class Person {
