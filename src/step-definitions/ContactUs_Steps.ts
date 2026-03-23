@@ -57,11 +57,20 @@ When('I click on the submit button', async function (this: CucumberWorld) {
 
 Then('I should be presented with a successful contact us submission message', async function (this: CucumberWorld) {
     expect(await this.contactUsPage.getSuccessMessage()).toBe('Thank You for your Message!');
+
+    /*
+    *  If you need to reuse the value multiple times use this approach instead
+    *  If you want to log/debug the actual value before asserting
+    *  If the assertion is complex (multiple checks on same value)
+    */
+    const successMessage = await this.contactUsPage.getSuccessMessage();
+    logger.info(`Actual message: ${successMessage}`);
+    expect(successMessage).toContain('Thank You');
+    expect(successMessage).not.toContain('Error');
 });
 
 
 Then('I should be presented with a unsuccessful contact us submission message', async function (this: CucumberWorld) {
-    // Assert that the error message contains the expected text
     expect(await this.contactUsPage.getErrorMessage()).toMatch(/Error: all fields are required|Invalid email address/);
 });
 
