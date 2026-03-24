@@ -5,6 +5,7 @@ import { faker, th } from '@faker-js/faker';
 import { CucumberWorld } from "./world/CucumberWorld";
 import logger from "../logger/logger";
 import dotenv from "dotenv";
+import { todo } from "node:test";
 
 dotenv.config({ path: "./env/.env.local" });
 
@@ -65,12 +66,13 @@ Then('I should be presented with a successful contact us submission message', as
     */
     const successMessage = await this.contactUsPage.getSuccessMessage();
     logger.info(`Actual message: ${successMessage}`);
-    expect(successMessage).toContain('Thank You');
+    expect(successMessage).toBe('Thank You for your Message!');
     expect(successMessage).not.toContain('Error');
 });
 
-
+// TODO: This Stepd defintion does exist in the feature file. Maibe we could add a scenario.
 Then('I should be presented with a unsuccessful contact us submission message', async function (this: CucumberWorld) {
+    const errorMessage = await this.contactUsPage.getErrorMessage();
     expect(await this.contactUsPage.getErrorMessage()).toMatch(/Error: all fields are required|Invalid email address/);
 });
 
@@ -128,8 +130,6 @@ When('I type a email address {string} and a comment {string}', async (emailAddre
 });
 
 Then('I should be presented with a header text {string}', async function (this: CucumberWorld, text: string) {
-  
     // assert that the text content of the element includes the expected text
     expect(await this.contactUsPage.getHeaderTExt(text)).toContain(text);
-
 });
