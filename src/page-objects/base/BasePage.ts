@@ -52,9 +52,8 @@ export class BasePage {
     }
 
     // This method is an alternative to the switchToNewTab method, it waits for a new page event and then 
-    // retrieves all open pages to ensure it gets the correct new tab, 
-    // which can be more reliable in certain scenarios where multiple tabs might be opened.
-    // this is the method implemented by Bruno tutor
+    // retrieves all open pages to ensure it gets the correct new tab, which can be more reliable in certain 
+    // scenarios where multiple tabs might be opened. This is the method implemented by Bruno tutor
     public async switchToNewTabAlternativeMethod(): Promise<void> {
         await this.page.context().waitForEvent("page");
 
