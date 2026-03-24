@@ -7,9 +7,9 @@ Feature: WebdriverUniversity.com - Contact us Page
         And I switch to the browser Tab
 
     # Background: Navigate to the contact us page
-        # Given I navigate to the contactUs homepage
+    # Given I navigate to the contactUs homepage
 
-    @regression
+    # @regression
     Scenario: Valid Contact Us Form submission
         And I type a valid first name
         And I type a valid last name
@@ -36,7 +36,7 @@ Feature: WebdriverUniversity.com - Contact us Page
         And I click on the submit button
         Then I should be presented with a successful contact us submission message
 
-    @smoke 
+    @regression
     Scenario Outline:
         And I type a first Name <firstname> and a last Name <lastName>
         And I type a email address '<emailaddress>' and a comment '<comment>'
@@ -44,7 +44,7 @@ Feature: WebdriverUniversity.com - Contact us Page
         Then I should be presented with a header text '<message>'
 
         Examples:
-            | firstname | lastName | emailaddress         | comment      | message                      |
-            | Alice     | Smith    | this_email@gmail.com | Hello there  | Thank You for your Message!  |
-            | Charlie   | Brown    | invalid_email.com    | Test comment | Error: Invalid email address |
-            | Bob       | Pully    | invalid_email.com    | Test comment | Error: Invalid email address |
+            | firstname | lastName | emailaddress          | comment      | message                        |
+            | Alice     | Smith    | alice.smith@gmail.com | Hello there  | Thank You for your Message!    |
+            | Charlie   | Brown    | invalid_email.com     | Test comment | Error: Invalid email address   |
+            | Bob       | Pully    | invalid_email.com     |              | Error: all fields are required |

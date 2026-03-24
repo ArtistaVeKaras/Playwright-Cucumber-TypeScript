@@ -46,7 +46,7 @@ export class ContactUsPage extends BasePage {
      * Clicks on the submit button.
      * @returns {Promise<void>} A Promise that resolves when the button is clicked.
      */
-    public async clickSubmitForm(): Promise<void> {
+    public async clickSubmitButton(): Promise<void> {
         await this.waitAndClickByRole('button', 'SUBMIT');
     }
 
@@ -56,7 +56,7 @@ export class ContactUsPage extends BasePage {
      */
     public async getSuccessMessage(): Promise<string> {
         await this.page.waitForSelector('#contact_reply h1', { timeout: 6000 });
-        return await this.page.innerText('#contact_reply h1'); // Get the text content of the success message
+        return await this.page.innerText('#contact_reply h1');
     }
 
     /**
@@ -67,16 +67,17 @@ export class ContactUsPage extends BasePage {
         await this.page.waitForSelector('//body', { timeout: 6000 });
         const bodyElement = await this.page.locator("body");
         const bodyText = await bodyElement.innerText();
-        return bodyText;
+        return bodyText ?? '' // Return an empty string if bodyText is null or undefined;
     }
 
     /**
-     * Gets the text content of the header element that matches the provided message.
+     * Gets the text content of the header element( header of the error message when  the scenario fails) 
+     * that matches the provided message.
      * @param message The message to search for in the header element.
      * @returns {Promise<string>} The text content of the header element that matches the message.
      */
     public async getHeaderTExt(message: string): Promise<string> {
-          await this.page.waitForSelector('//h1 | //body', { state: 'visible' });
+        await this.page.waitForSelector('//h1 | //body', { state: 'visible' });
 
     // get all elements that match the locator
     const elements = await this.page.locator('//h1 | //body').elementHandles();

@@ -52,7 +52,7 @@ When('I type a comment into the comment text area', async function (this: Cucumb
 });
 
 When('I click on the submit button', async function (this: CucumberWorld) {
-    await this.contactUsPage.clickSubmitForm();
+    await this.contactUsPage.clickSubmitButton();
 });
 
 Then('I should be presented with a successful contact us submission message', async function (this: CucumberWorld) {
