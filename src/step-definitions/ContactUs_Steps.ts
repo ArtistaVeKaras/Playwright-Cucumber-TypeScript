@@ -5,7 +5,7 @@ import { faker, th } from '@faker-js/faker';
 import { CucumberWorld } from "./world/CucumberWorld";
 import logger from "../logger/logger";
 import dotenv from "dotenv";
-import { todo } from "node:test";
+import { ContactUsPage } from "../page-objects/ContactUsPage";
 
 dotenv.config({ path: "./env/.env.local" });
 
@@ -76,21 +76,21 @@ Then('I should be presented with a unsuccessful contact us submission message', 
     expect(await this.contactUsPage.getErrorMessage()).toMatch(/Error: all fields are required|Invalid email address/);
 });
 
-// This scenario uses parameterized data from the cucumber feature file
-When('I type a Specific first name {string}', async (firstName: string) => {
-    await pageFixture.page.getByPlaceholder('First Name').fill(firstName);
+// This scenario uses parameterized data from the cucumber feature file (Using Specific Data scenario)
+When('I type a Specific first name {string}', async function (firstName: string) {
+    await this.contactUsPage.fillFirstName(firstName);
 });
 
-When('I type a Specific last name {string}', async (lastName: string) => {
-    await pageFixture.page.getByPlaceholder('Last Name').fill(lastName);
+When('I type a Specific last name {string}', async function (lastName: string) {
+    await this.contactUsPage.fillLastName(lastName);
 });
 
-When('I type a Specific email address {string}', async (emailAddress: string) => {
-    await pageFixture.page.getByPlaceholder('Email Address').fill(emailAddress);
+When('I type a Specific email address {string}', async function (emailAddress: string) {
+    await this.contactUsPage.fillEmail(emailAddress);
 });
 
-When('I type a Specific text {string} and a number {int} within the comment input field', async (comment: string, number: number) => {
-    await pageFixture.page.getByPlaceholder('Comments').fill(`${comment} ${number}`);
+When('I type a Specific text {string} and a number {int} within the comment input field', async function (comment: string, number: number) {
+    await this.contactUsPage.fillMessage(`${comment} ${number}`);
 });
 
 // This scenario uses parameterized credentials with faker  dependencies 
@@ -98,24 +98,24 @@ When('I type a Specific text {string} and a number {int} within the comment inpu
 When('I type a random first name', async function (this: CucumberWorld) {
     const randomFirstName = faker.person.firstName();
     this.setFirstName(randomFirstName);
-    await pageFixture.page.getByPlaceholder('First Name').fill(randomFirstName);
+    await this.contactUsPage.fillFirstName(randomFirstName);
 });
 
 When('I type a random last name', async function (this: CucumberWorld) {
     const randomLastName = faker.person.lastName();
     this.setLastName(randomLastName);
-    await pageFixture.page.getByPlaceholder('Last Name').fill(randomLastName);
+    await this.contactUsPage.fillLastName(randomLastName);
 });
 
 When('I type a random email address', async function (this: CucumberWorld) {
     const randomEmail = faker.internet.email();
     this.setEmail(randomEmail);
-    await pageFixture.page.getByPlaceholder('Email Address').fill(randomEmail);
+    await this.contactUsPage.fillEmail(randomEmail);
 })
 
 When('I type a random comment into the comment text area', async function (this: CucumberWorld) {
     const randomComment = faker.lorem.sentence();
-    await pageFixture.page.getByPlaceholder('Comments').fill(`Comment: ${randomComment}! 
+    await this.contactUsPage.fillMessage(`Comment: ${randomComment}! 
         \n Please contact me on:\n  ${this.getFirstName()} \n ${this.getLastName()} \n ${this.getEmail()}`);
 });
 
