@@ -4,6 +4,12 @@ import { BasePage } from "../../page-objects/base/BasePage";
 import { HomePage } from "../../page-objects/HomePage";
 import { ContactUsPage } from "../../page-objects/ContactUsPage";
 
+/**
+ * Represents the shared context for Cucumber tests.
+ * Extends the Cucumber World base class to provide additional functionality.
+ * Includes PageManager and Page objects for managing page interactions.
+ * Stores application URL and user details for test execution.
+ */
 export class CucumberWorld extends World {
     public pageManager: PageManager;
     public basePage: BasePage;
@@ -22,9 +28,9 @@ export class CucumberWorld extends World {
     private email?: string;
 
     /** 
-     *  { attach, log, parameters } are provided by Cucumber framework. IWorldOptions are required in the 
-    *   constructor of the custom World class to inherit from the Cucumber World base class
-    *   and to initialize your PageManager and BasePage instances properly.
+    *  { attach, log, parameters } are provided by Cucumber framework. IWorldOptions are required in the 
+    *  constructor of the custom World class to inherit from the Cucumber World base class
+    *  and to initialize your PageManager and BasePage instances properly.
     */
     constructor({ attach, log, parameters, link }: IWorldOptions) {
         super({ attach, log, parameters, link });
