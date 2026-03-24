@@ -41,9 +41,13 @@ export class BasePage {
         await this.page.click(selector);
     }
 
-    // switchToNewTab method waits for a new page event, retrieves the new page directly from the event,
-    // and then brings it to the front and sets the viewport size. This method is more straightforward and 
-    // can be more reliable in scenarios where multiple tabs might be opened, as it directly captures the new page from the event.
+    /* 
+    * The switchToNewTab method waits for a new page event, retrieves the new page directly from the event,
+    * and then brings it to the front and sets the viewport size. 
+    * 
+    * This method is more straightforward and can be more reliable in scenarios where multiple tabs might be opened,
+    * but it's less efficient as it directly captures the new page from the event.
+    */
     public async switchToNewTab(): Promise<void> {
         const newPage = await this.page.context().waitForEvent('page'); // waitForEvent returns the new Page directly (safer than indexing) const newPage = await pageFixture.context.waitForEvent('page');
         pageFixture.page = newPage; // now definitely a Page
@@ -51,9 +55,10 @@ export class BasePage {
         await pageFixture.page.setViewportSize({ width: config.browserWidth, height: config.browserHeight });
     }
 
-    // This method is an alternative to the switchToNewTab method, it waits for a new page event and then 
-    // retrieves all open pages to ensure it gets the correct new tab, which can be more reliable in certain 
-    // scenarios where multiple tabs might be opened. This is the method implemented by Bruno tutor
+    /*
+    * This method is an alternative to the switchToNewTab method 
+    * This is the method implemented by Bruno tutor
+    */
     public async switchToNewTabAlternativeMethod(): Promise<void> {
         await this.page.context().waitForEvent("page");
 
