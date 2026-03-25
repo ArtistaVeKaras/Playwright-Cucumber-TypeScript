@@ -29,7 +29,7 @@ Given('I navigate to webdriver university login page', async function (this: Cuc
 });
 
 // This scenario uses hardcoded valid credentials
-When('I type a valid username', async function (this: CucumberWorld) {
+When('I type a valid username', async function (this: CucumberWorld, ) {
     await this.loginPage.fillUsername('webdriver');
 });
 
@@ -38,34 +38,29 @@ When('I type a valid password', async function (this: CucumberWorld) {
 });
 
 When('I click on the login button', async function (this: CucumberWorld) {
-    await this.loginPage.clickLoginButton();
-
     // look out for alert dialog and capture the message
-    // await pageFixture.page.on('dialog', async (alert) => {
-    //     alertMessage = alert.message();
-    //     await alert.accept();
-    // });
-    // const loginButton = pageFixture.page.locator('#login-button');
-    // await loginButton.hover();
-    // await loginButton.click({ force: true });
+    this.loginPage.page.on('dialog', async (alert) => {
+        alertMessage = alert.message();
+        await alert.accept();
+    });
+
+    await this.loginPage.clickLoginButton();
 });
 
 Then('I should be presented with a successful login message', async function (this: CucumberWorld) {
-    const alertMessage = await this.loginPage.getAlertMessage();
-    logger.info(`Alert message received: ${alertMessage}`);
-    expect(alertMessage).toBe('validation failed');
-    // expect(alertMessage).toBe('validation succeeded');
+    expect(alertMessage).toBe('validation succeeded');
 });
 
 // This scenario uses parameterized credentials
-When('I type a username {string}', async (firstName: string) => {
-    await pageFixture.page.getByRole('textbox', { name: 'Username' }).fill(firstName);
+When('I type a username {string}', async function (this: CucumberWorld, username: string) {
+    await this.loginPage.fillUsername(username);
 });
 
-When('I type a password {string}', async (password: string) => {
-    await pageFixture.page.getByRole('textbox', { name: 'Password' }).fill(password);
+When('I type a password {string}', async function (this: CucumberWorld, password: string) {
+    await this.loginPage.fillPassword(password);
 });
 
-Then('I should be presented with a login message {string}', async (message: string) => {
-    // expect(alertMessage).toBe(message);
+Then('I should be presented with a login message {string}', async function (this: CucumberWorld, message: string) {
+    expect(alertMessage).toBe(message);
 });
+

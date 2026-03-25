@@ -38,10 +38,9 @@ export class LoginPage extends BasePage {
      * @return {Promise<void>} A Promise that resolves when the button is clicked.
      */
     public async clickLoginButton(): Promise<void> {
-        const alertButtonAccept = this.page.locator('#login-button');
-        await alertButtonAccept.hover();
-        await alertButtonAccept.click({ force: true });
-        await this.waitAndClickByRole('button', 'LOGIN');
+        const loginButton = this.page.locator('#login-button');
+        await loginButton.hover();
+        await loginButton.click({ force: true });
     }
 
     /**
@@ -49,14 +48,12 @@ export class LoginPage extends BasePage {
      * @return {Promise<string>} A Promise that resolves to the text content of the alert message.
      */
     public async getAlertMessage(): Promise<string> {
-
-        let alertMessage = '';
-        // look out for alert dialog and capture the message
+        let alertMessage: string = '';
         this.page.on('dialog', async (alert) => {
             alertMessage = alert.message();
             await alert.accept();
         });
-    
+
         return alertMessage;
     }
 }
