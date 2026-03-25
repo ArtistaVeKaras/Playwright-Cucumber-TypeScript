@@ -73,7 +73,7 @@ Then('I should be presented with a successful contact us submission message', as
 // TODO: This Stepd defintion does exist in the feature file. Maibe we could add a scenario.
 Then('I should be presented with a unsuccessful contact us submission message', async function (this: CucumberWorld) {
     const errorMessage = await this.contactUsPage.getErrorMessage();
-    expect(await this.contactUsPage.getErrorMessage()).toMatch(/Error: all fields are required|Invalid email address/);
+    expect(errorMessage).toContain(/Error: all fields are required|Invalid email address/);
 });
 
 // This scenario uses parameterized data from the cucumber feature file (Using Specific Data scenario)
@@ -93,20 +93,30 @@ When('I type a Specific text {string} and a number {int} within the comment inpu
     await this.contactUsPage.fillMessage(`${comment} ${number}`);
 });
 
-// This scenario uses parameterized credentials with faker  dependencies 
-// and the cucumberWorld to store generated data
+/*
+* This scenario uses parameterized credentials with faker dependencies 
+* and the cucumberWorld to store generated data
+*/
 When('I type a random first name', async function (this: CucumberWorld) {
     const randomFirstName = faker.person.firstName();
     this.setFirstName(randomFirstName);
     await this.contactUsPage.fillFirstName(randomFirstName);
 });
 
+/*
+* This scenario uses parameterized credentials with faker dependencies 
+* and the cucumberWorld to store generated data
+*/
 When('I type a random last name', async function (this: CucumberWorld) {
     const randomLastName = faker.person.lastName();
     this.setLastName(randomLastName);
     await this.contactUsPage.fillLastName(randomLastName);
 });
 
+/*
+* This scenario uses parameterized credentials with faker dependencies 
+* and the cucumberWorld to store generated data
+*/
 When('I type a random email address', async function (this: CucumberWorld) {
     const randomEmail = faker.internet.email();
     this.setEmail(randomEmail);
@@ -130,6 +140,5 @@ When('I type a email address {string} and a comment {string}', async (emailAddre
 });
 
 Then('I should be presented with a header text {string}', async function (this: CucumberWorld, text: string) {
-    // assert that the text content of the element includes the expected text
     expect(await this.contactUsPage.getHeaderTExt(text)).toContain(text);
 });

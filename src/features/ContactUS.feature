@@ -27,8 +27,7 @@ Feature: WebdriverUniversity.com - Contact us Page
         And I click on the submit button
         Then I should be presented with a successful contact us submission message
 
-    # @contact-us
-    @regression
+    @contact-us
     Scenario: Valid Contact Us Form submission - With faker data
         And I type a random first name
         And I type a random last name
@@ -37,7 +36,7 @@ Feature: WebdriverUniversity.com - Contact us Page
         And I click on the submit button
         Then I should be presented with a successful contact us submission message
 
-    @smoke
+    @regression
     Scenario Outline:
         And I type a first Name <firstname> and a last Name <lastName>
         And I type a email address '<emailaddress>' and a comment '<comment>'
