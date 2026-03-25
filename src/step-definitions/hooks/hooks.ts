@@ -76,6 +76,7 @@ Before(async function () {
         this.basePage = this.pageManager.createBasePage();
         this.homePage = this.pageManager.createHomePage();
         this.contactUsPage = this.pageManager.createContactUsPage();
+        this.loginPage = this.pageManager.createLoginPage();
     } catch (error) {
         logger.error("Error during browser initialization:", error);
         throw error; // Rethrow to fail the scenario if initialization fails
