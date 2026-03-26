@@ -5,17 +5,32 @@ import { BasePage } from "./base/BasePage";
  * Extends the BasePage class.
  */
 export class TodoPage extends BasePage {
-    
-    public async fillTodoItem(todoItem: string): Promise<void> {
+
+    public async typeNewTodoItem(todoItem: string): Promise<void> {
         return this.page.getByPlaceholder('Add new todo').fill(todoItem);
     }
 
-    public async clickTheEnterButton(): Promise<void> {
-        await this.page.getByRole('button', { name: 'Add' }).click();
+    public async pressTheEnterKey(): Promise<void> {
+        await this.page.getByPlaceholder('Add new todo').press('Enter');
     }
 
-    public async getLastTodoItemText(): Promise<string> {
-        const todoItems = await this.page.locator('.todo-list li').allTextContents();
-        return todoItems[todoItems.length - 1] ?? '';
+    public async getTodoItemCount(): Promise<number> {
+        return await this.page.locator('li:visible').count();
+    }
+
+    public async getLastItemAddedText(): Promise<string> {
+        const lastItem = this.page.locator('li:visible').last();
+        const text = await lastItem.textContent();
+        return text?.trim() ?? '';
+    }
+
+    public async getTodoItemTextByIndex(index: number): Promise<string> {
+        const item = this.page.locator('.todo-list li').nth(index);
+        const text = await item.textContent();
+        return text?.trim() ?? '';
+    }
+
+    public async getAllTodoTexts(): Promise<string[]> {
+        return (await this.page.locator('li:visible').allTextContents()).map(item => item.trim());
     }
 }

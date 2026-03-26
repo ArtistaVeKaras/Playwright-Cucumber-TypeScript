@@ -28,7 +28,7 @@ Given('I navigate to webdriver university login page', async function (this: Cuc
 });
 
 // This scenario uses hardcoded valid credentials
-When('I type a valid username', async function (this: CucumberWorld,) {
+When('I type a valid username', async function (this: CucumberWorld) {
     await this.loginPage.fillUsername('webdriver');
 });
 

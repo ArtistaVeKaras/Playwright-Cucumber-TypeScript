@@ -1,9 +1,13 @@
 Feature: Add a new TODO item to the TODO page
 
-    Background: Navigate to the WebdriverUniversity
-        Given I navigate to webdriver university homepage
-        When I click on the TO DO LIST button
-        And I switch to the browser Tab
+    # This background is problematic because of the stiwch tab function
+    # Background: Navigate to the WebdriverUniversity
+    #     Given I navigate to webdriver university homepage
+    #     When I click on the TO DO LIST button
+    #     And I switch to the browser Tab
+
+    Background: Navigate to To Do List Page
+        Given I navigate to the TODOLIST homepage
 
     @todos
     Scenario: Add a new TODO item
