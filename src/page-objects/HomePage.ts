@@ -36,7 +36,7 @@ export class HomePage extends BasePage {
    * Clicks on the "To Do List" link on the home page.
    * @returns {Promise<void>} A Promise that resolves when the click operation is complete.
    */
-  public async clickOnToDoList(): Promise<void> {
+  public async clickTheToDoListButton(): Promise<void> {
     await this.waitAndClickByRole("link", "TO DO LIST");
   }
 }

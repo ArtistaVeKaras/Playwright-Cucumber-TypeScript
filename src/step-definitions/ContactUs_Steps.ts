@@ -1,11 +1,10 @@
 import { Given, When, Then } from "@cucumber/cucumber";
 import { pageFixture } from "./hooks/browserContextFixture";
 import { expect } from "@playwright/test";
-import { faker, th } from '@faker-js/faker';
+import { faker } from '@faker-js/faker';
 import { CucumberWorld } from "./world/CucumberWorld";
 import logger from "../logger/logger";
 import dotenv from "dotenv";
-import { ContactUsPage } from "../page-objects/ContactUsPage";
 
 dotenv.config({ path: "./env/.env.local" });
 
@@ -44,7 +43,7 @@ When('I type a valid last name', async function (this: CucumberWorld) {
 
 // This scenario uses hardcoded valid contact us form data
 When('I type a valid email address', async function (this: CucumberWorld) {
-     await this.contactUsPage.fillEmail('d6E0r@example.com');
+    await this.contactUsPage.fillEmail('d6E0r@example.com');
 });
 
 // This scenario uses hardcoded valid contact us form data

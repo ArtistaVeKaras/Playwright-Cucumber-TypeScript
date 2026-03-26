@@ -4,6 +4,7 @@ import { pageFixture } from '../../step-definitions/hooks/browserContextFixture'
 import { HomePage } from '../HomePage';
 import { ContactUsPage } from '../ContactUsPage';
 import { LoginPage } from '../LoginPage';
+import { TodoPage } from '../TodoPage';
 
 
 /**
@@ -28,7 +29,7 @@ export class PageManager {
         return new BasePage();
     }
 
-    createHomePage(): HomePage{
+    createHomePage(): HomePage {
         return new HomePage();
     }
 
@@ -38,5 +39,9 @@ export class PageManager {
 
     createLoginPage(): LoginPage {
         return new LoginPage();
+    }
+
+    createTodoPage(): TodoPage {
+        return new TodoPage();
     }
 }

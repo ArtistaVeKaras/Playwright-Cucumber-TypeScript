@@ -1,6 +1,6 @@
 import { exec } from 'child_process';
 import dotenv from 'dotenv';
-dotenv.config({ path : './env/.env' });
+dotenv.config({ path: './env/.env' });
 
 // Setting retry attempt from env variable or default to 0
 const retryAttempts = process.env.RETRY_ATTEMPTS || '0';
@@ -29,13 +29,14 @@ const profiles: ProfilesCommands = {
     regression: `${common} --tags "@regression"`,
     login: `${common} --tags "@login"`,
     contactUs: `${common} --tags "@contact-us"`,
+    todos: `${common} --tags "@todos"`,
 };
 
 // Get the third command line argument to determine which profile to use
 const profile = process.argv[2];
 
 // Construct the command string based on the selected profile
-let command = `npx cucumber-js ${profiles[profile as 'smoke' | 'regression' | 'login' | 'contactUs']}`;
+let command = `npx cucumber-js ${profiles[profile as 'smoke' | 'regression' | 'login' | 'contactUs' | 'todos']}`;
 
 // Print the constructed command    // Default to 'all' profile
 console.log(`Running command: ${command}`);

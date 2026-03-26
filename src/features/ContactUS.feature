@@ -1,13 +1,14 @@
 # @regression
 Feature: WebdriverUniversity.com - Contact us Page
 
+    # This background scenario should be avoided because the swtich tab causes the test to be flaky.
     Background: Navigate to the WebdriverUniversity
-        Given I navigate to webdriver university homepage
-        When I click on the Contact Us button
-        And I switch to the browser Tab
+    # Given I navigate to webdriver university homepage
+    # When I click on the Contact Us button
+    # And I switch to the browser Tab
 
-    # Background: Navigate to the contact us page
-    # Given I navigate to the contactUs homepage
+    Background: Navigate to the contact us page
+        Given I navigate to the contactUs homepage
 
     # @regression
     Scenario: Valid Contact Us Form submission
@@ -37,7 +38,7 @@ Feature: WebdriverUniversity.com - Contact us Page
         Then I should be presented with a successful contact us submission message
 
     @regression
-    Scenario Outline:
+    Scenario Outline: Contact Us Form submission with various data sets
         And I type a first Name <firstname> and a last Name <lastName>
         And I type a email address '<emailaddress>' and a comment '<comment>'
         And I click on the submit button

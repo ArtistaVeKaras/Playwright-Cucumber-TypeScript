@@ -1,5 +1,4 @@
 import { Given, When, Then } from '@cucumber/cucumber';
-import { pageFixture } from './hooks/browserContextFixture';
 import { expect } from '@playwright/test';
 import { CucumberWorld } from '../step-definitions/world/CucumberWorld';
 import logger from '../logger/logger';
@@ -29,7 +28,7 @@ Given('I navigate to webdriver university login page', async function (this: Cuc
 });
 
 // This scenario uses hardcoded valid credentials
-When('I type a valid username', async function (this: CucumberWorld, ) {
+When('I type a valid username', async function (this: CucumberWorld,) {
     await this.loginPage.fillUsername('webdriver');
 });
 

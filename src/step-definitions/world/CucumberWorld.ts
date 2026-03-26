@@ -4,6 +4,7 @@ import { BasePage } from "../../page-objects/base/BasePage";
 import { HomePage } from "../../page-objects/HomePage";
 import { ContactUsPage } from "../../page-objects/ContactUsPage";
 import { LoginPage } from "../../page-objects/LoginPage";
+import { TodoPage } from "../../page-objects/TodoPage";
 
 /**
  * Represents the shared context for Cucumber tests.
@@ -18,6 +19,7 @@ export class CucumberWorld extends World {
   public homePage: HomePage;
   public contactUsPage: ContactUsPage;
   public loginPage: LoginPage;
+  public todoPage: TodoPage;
 
   // You can add custom properties or methods here if needed
   // For example, you might want to store some state between steps
@@ -45,6 +47,7 @@ export class CucumberWorld extends World {
     this.homePage = this.pageManager.createHomePage();
     this.contactUsPage = this.pageManager.createContactUsPage();
     this.loginPage = this.pageManager.createLoginPage();
+    this.todoPage = this.pageManager.createTodoPage();
   }
 
   // Setters for the baseUrl

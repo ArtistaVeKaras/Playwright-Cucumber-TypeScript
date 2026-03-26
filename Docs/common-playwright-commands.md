@@ -29,3 +29,9 @@ npx playwright test --headed --trace on
 ```bash
 npm run cucumber regression
 ```
+
+## Run feature file with a specific tag to generate step definition snippets
+
+```bash
+npx cucumber-js src/features/TodoList.feature 
+```

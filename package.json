@@ -13,6 +13,7 @@
     "test": "npx playwright test --project=chromium",
     "ci": "npx playwright test --project=chromium --workers=1",
     "cucumberWithTSLogin": "npx cucumber-js src/features/Login.feature --require-module ts-node/register --require src/step-definitions/**/**/*.ts --require src/utils/cucumber-timeout.ts --format progress-bar --format @cucumber/pretty-formatter --tags @login",
+    "cucumberWithTSTodoList": "npx cucumber-js src/features/TodoList.feature --require-module ts-node/register --require src/step-definitions/**/**/*.ts --require src/utils/cucumber-timeout.ts --format progress-bar --format @cucumber/pretty-formatter --tags @todos",
     "cucumberWithTSContactUs": "npx cucumber-js src/features/ContactUs.feature --require-module ts-node/register --require src/step-definitions/**/**/*.ts --require src/utils/cucumber-timeout.ts --format progress-bar --format @cucumber/pretty-formatter --tags @regression",
     "precucumber": "rimraf reports && mkdir reports",
     "cucumber": "npx cucumber-js && ts-node ./src/index.ts"
