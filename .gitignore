@@ -12,6 +12,7 @@
 *.tmp
 *.env
 /dist/
+.other
 
 # Playwright
 node_modules/
